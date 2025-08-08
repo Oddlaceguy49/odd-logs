@@ -148,3 +148,7 @@
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
 }
+
+body {
+  @apply bg-background text-foreground;
+}

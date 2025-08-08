@@ -1,10 +1,11 @@
 ---
 import Welcome from "@/components/Welcome.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import ModeToggle from "@/components/ui/ModeToggle.svelte";
 ---
 
 <BaseLayout>
-    <div>
-        <box < div> </box>
-    </div></BaseLayout
->
+    <div class="flex shrink-0 float-right m-4">
+        <ModeToggle client:load />
+    </div>
+</BaseLayout>

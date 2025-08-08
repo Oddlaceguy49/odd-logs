@@ -1,7 +1,6 @@
 ---
 import "@/styles/global.css";
 import { ModeWatcher } from "mode-watcher";
-import BaseSvelteLayout from "@/components/layouts/BaseSvelteLayout.svelte";
 ---
 
 <script is:inline>
@@ -39,7 +38,7 @@ import BaseSvelteLayout from "@/components/layouts/BaseSvelteLayout.svelte";
     </head>
     <body>
         <ModeWatcher client:load />
-        <BaseSvelteLayout client:load />
+        <!-- <BaseSvelteLayout client:load /> -->
         <slot />
     </body>
 </html>
