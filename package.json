@@ -16,12 +16,13 @@
     "wrangler": "^4.28.1"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.2"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.3",
     "@astrojs/sitemap": "^3.4.2",
     "@astrojs/svelte": "^7.1.0",
-    "astro": "^5.12.9"
+    "astro": "^5.12.9",
+    "svelte": "^5.38.0"
   }
 }
