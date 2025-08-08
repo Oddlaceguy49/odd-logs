@@ -6,6 +6,8 @@ import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, passthroughImageService } from "astro/config";
 
+import tailwindcss from "@tailwindcss/vite";
+
 const siteUrl = "https://base-astro.copperdevs.com";
 
 // https://astro.build/config
@@ -26,9 +28,12 @@ export default defineConfig({
                 usePolling: true,
             },
         },
+
         ssr: {
             external: ["node:buffer"],
         },
+
+        plugins: [tailwindcss()],
     },
     experimental: {
         contentIntellisense: true,
