@@ -1,5 +1,3 @@
-// @ts-check
-
 import cloudflare from "@astrojs/cloudflare";
 
 import svelte from "@astrojs/svelte";
@@ -7,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig, passthroughImageService } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
+import { mdsvex } from "mdsvex";
+import { PreprocessorGroup } from "svelte/compiler";
 
 const siteUrl = "https://base-astro.copperdevs.com";
 
@@ -21,7 +21,13 @@ export default defineConfig({
         },
     }),
     image: { service: passthroughImageService() },
-    integrations: [svelte(), sitemap()],
+    integrations: [
+        svelte({
+            extensions: [".svelte", ".svx"],
+            preprocess: [mdsvex() as unknown as PreprocessorGroup],
+        }),
+        sitemap(),
+    ],
     vite: {
         server: {
             watch: {
