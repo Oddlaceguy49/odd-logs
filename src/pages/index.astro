@@ -2,10 +2,26 @@
 import Welcome from "@/components/Welcome.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ModeToggle from "@/components/ui/ModeToggle.svelte";
+import Button from "$lib/components/ui/button/button.svelte";
 ---
 
 <BaseLayout>
-    <div class="flex shrink-0 float-right m-4">
-        <ModeToggle client:load />
+    <div
+        class="relative flex min-h-screen flex-col items-center justify-center p-4"
+    >
+        <div class="absolute top-4 right-4">
+            <ModeToggle client:load />
+        </div>
+        <div class="text-center">
+            <h1>Welcome to 0dd Logs</h1>
+            <h2>Astro + Tailwind</h2>
+            <h3>Svelte + Shadcn-svelte</h3>
+            <h4>Typescript</h4>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
+                repellendus. Dignissimos quidem aliquam adipisci. Soluta,
+                aperiam. Soluta, aperiam. Soluta, aperiam. Soluta, aperiam. 0.
+            </p>
+        </div>
     </div>
 </BaseLayout>
