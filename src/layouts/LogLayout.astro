@@ -14,20 +14,24 @@ const authorData = author.data;
 ---
 
 <main>
-    <article>
-        <h1>{logData.title}</h1>
-        <p>
-            By {authorData.name} • {
-                new Date(logData.pubDate).toLocaleDateString()
-            }
-        </p>
-        <p>{logData.readingTime} min read</p>
-        <img
-            src={logData.image.url}
-            alt={logData.image.alt}
-            width={logData.image.width}
-            height={logData.image.height}
-        />
-    </article>
-    <slot />
+    <div class="flex justify-center">
+        <div class="max-w-4xl">
+            <article>
+                <h1>{logData.title}</h1>
+                <p>
+                    By {authorData.name} • {
+                        new Date(logData.pubDate).toLocaleDateString()
+                    }
+                </p>
+                <p>{logData.readingTime} min read</p>
+                <img
+                    src={logData.image.url}
+                    alt={logData.image.alt}
+                    width={logData.image.width}
+                    height={logData.image.height}
+                />
+            </article>
+            <slot />
+        </div>
+    </div>
 </main>
