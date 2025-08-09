@@ -2,14 +2,11 @@
 import { getEntry, type CollectionEntry } from "astro:content";
 interface Props {
     log: CollectionEntry<"logs">;
+    author: CollectionEntry<"authors">;
 }
-const props = Astro.props;
-const logData = props.log.data;
-const author = await getEntry(logData.author.collection, logData.author.id);
-if (!author) {
-    throw new Error(`Author not found for slug: ${logData.author.id}`);
-}
+const { log, author } = Astro.props;
 
+const logData = log.data;
 const authorData = author.data;
 ---
 

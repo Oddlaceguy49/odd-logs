@@ -13,12 +13,19 @@ const log = await getEntry("logs", slug);
 if (!log) {
     throw new Error(`Log not found for slug: ${slug}`);
 }
+const logData = log.data;
 
 const { Content, headings } = await render(log);
+
+const author = await getEntry(logData.author.collection, logData.author.id);
+if (!author) {
+    throw new Error(`Author not found for slug: ${logData.author.id}`);
+}
+const authorData = author.data;
 ---
 
 <BaseLayout>
-    <LogLayout log={log}>
+    <LogLayout log={log} author={author}>
         <Content />
     </LogLayout>
 </BaseLayout>
