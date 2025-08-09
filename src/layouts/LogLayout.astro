@@ -1,0 +1,33 @@
+---
+import { getEntry, type CollectionEntry } from "astro:content";
+interface Props {
+    log: CollectionEntry<"logs">;
+}
+const props = Astro.props;
+const logData = props.log.data;
+const author = await getEntry(logData.author.collection, logData.author.id);
+if (!author) {
+    throw new Error(`Author not found for slug: ${logData.author.id}`);
+}
+
+const authorData = author.data;
+---
+
+<main>
+    <article>
+        <h1>{logData.title}</h1>
+        <p>
+            By {authorData.name} • {
+                new Date(logData.pubDate).toLocaleDateString()
+            }
+        </p>
+        <p>{logData.readingTime} min read</p>
+        <img
+            src={logData.image.url}
+            alt={logData.image.alt}
+            width={logData.image.width}
+            height={logData.image.height}
+        />
+    </article>
+    <slot />
+</main>
