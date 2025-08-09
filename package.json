@@ -10,6 +10,7 @@
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.12.9",
     "mode-watcher": "^1.1.0",
+    "reading-time": "^1.5.0",
     "svelte": "^5.38.0",
     "tailwindcss": "^4.1.11"
   },

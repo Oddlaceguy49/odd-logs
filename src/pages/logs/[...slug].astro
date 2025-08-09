@@ -1,8 +1,8 @@
 ---
 import { getEntry, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { date } from "astro:schema";
 import LogLayout from "@/layouts/LogLayout.astro";
+import readingTime from "reading-time";
 
 const { slug } = Astro.params;
 if (!slug) {
@@ -22,10 +22,12 @@ if (!author) {
     throw new Error(`Author not found for slug: ${logData.author.id}`);
 }
 const authorData = author.data;
+
+const stats = readingTime(log.body ?? "");
 ---
 
 <BaseLayout>
-    <LogLayout log={log} author={author}>
+    <LogLayout log={log} author={author} stats={stats}>
         <Content />
     </LogLayout>
 </BaseLayout>

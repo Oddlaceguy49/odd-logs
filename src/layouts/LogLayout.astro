@@ -1,34 +1,67 @@
 ---
-import { getEntry, type CollectionEntry } from "astro:content";
+import { formatDate } from "@/utils/time";
+import type { CollectionEntry } from "astro:content";
+import type { ReadTimeResults } from "reading-time";
 interface Props {
     log: CollectionEntry<"logs">;
     author: CollectionEntry<"authors">;
+    stats: ReadTimeResults;
 }
-const { log, author } = Astro.props;
+const { log, author, stats } = Astro.props;
 
 const logData = log.data;
 const authorData = author.data;
 ---
 
-<main>
-    <div class="flex justify-center">
-        <div class="max-w-4xl">
-            <article>
-                <h1>{logData.title}</h1>
-                <p>
-                    By {authorData.name} • {
-                        new Date(logData.pubDate).toLocaleDateString()
-                    }
-                </p>
-                <p>{logData.readingTime} min read</p>
-                <img
-                    src={logData.image.url}
-                    alt={logData.image.alt}
-                    width={logData.image.width}
-                    height={logData.image.height}
-                />
-            </article>
-            <slot />
+<main class="py-8">
+    <article class="prose-container">
+        <h1>{logData.title}</h1>
+
+        <div
+            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground italic"
+        >
+            {/* Author Link */}
+            <div>
+                <span>By </span>
+                <!-- <a
+                    href={`/author/${authorData.slug}`}
+                    class="font-medium text-foreground hover:underline"
+                > -->
+                {authorData.name}
+            </div>
+
+            {/* Separator */}
+            <span aria-hidden="true">•</span>
+
+            {/* Publication Date */}
+            <time datetime={new Date(logData.pubDate).toISOString()}>
+                {formatDate(logData.pubDate.toDateString())}
+            </time>
+
+            {/* Updated Date (conditional) */}
+            {
+                logData.updatedDate && (
+                    <>
+                        <span aria-hidden="true">•</span>
+                        <time
+                            datetime={new Date(
+                                logData.updatedDate
+                            ).toISOString()}
+                        >
+                            Updated:{" "}
+                            {formatDate(logData.updatedDate.toDateString())}
+                        </time>
+                    </>
+                )
+            }
         </div>
-    </div>
+        <p>{stats.text}</p>
+        <img
+            src={logData.image.url}
+            alt={logData.image.alt}
+            width={logData.image.width}
+            height={logData.image.height}
+        />
+        <slot />
+    </article>
 </main>
