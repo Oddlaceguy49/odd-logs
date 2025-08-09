@@ -1,4 +1,5 @@
 {
+    "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
         // Environment setup & latest features
         "lib": [
@@ -25,19 +26,24 @@
         "noUnusedParameters": false,
         "noPropertyAccessFromIndexSignature": false,
         // Other
+        "baseUrl": ".",
         "paths": {
             "@/*": [
-                "./src/*"
+                "src/*"
             ],
             "$lib": [
-                "./src/lib"
+                "src/lib"
             ],
             "$lib/*": [
-                "./src/lib/*"
+                "src/lib/*"
+            ],
+            "@content/*": [
+                "src/content/*"
             ]
         }
     },
     "include": [
-        "src/"
+        ".astro/types.d.ts",
+        "**/*"
     ]
 }

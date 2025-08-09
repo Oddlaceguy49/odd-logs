@@ -22,7 +22,10 @@
       "performance": {
         "noImgElement": "off"
       }
-    }
+    },
+    "includes": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ]
   },
   "javascript": {
     "formatter": {
@@ -37,10 +40,14 @@
       }
     }
   },
-  "extends": ["ultracite"],
+  "extends": [
+    "ultracite"
+  ],
   "overrides": [
     {
-      "includes": ["**/*.astro"],
+      "includes": [
+        "**/*.astro"
+      ],
       "linter": {
         "rules": {
           "style": {

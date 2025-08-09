@@ -1,0 +1,43 @@
+---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { date } from "astro:schema";
+
+const { slug } = Astro.params;
+if (!slug) {
+    throw new Error("Missing slug");
+}
+const log = await getEntry("logs", slug);
+
+if (!log) {
+    throw new Error(`Log not found for slug: ${slug}`);
+}
+
+const logData = log.data;
+const author = await getEntry(logData.author.collection, logData.author.id);
+if (!author) {
+    throw new Error(`Author not found for slug: ${logData.author.id}`);
+}
+
+const authorData = author.data;
+const { Content, headings } = await render(log);
+---
+
+<BaseLayout>
+    <article>
+        <h1>{logData.title}</h1>
+        <p>
+            By {authorData.name} • {
+                new Date(logData.pubDate).toLocaleDateString()
+            }
+        </p>
+        <p>{logData.readingTime} min read</p>
+        <img
+            src={logData.image.url}
+            alt={logData.image.alt}
+            width={logData.image.width}
+            height={logData.image.height}
+        />
+        <Content />
+    </article>
+</BaseLayout>

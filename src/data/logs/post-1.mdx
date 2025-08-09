@@ -1,13 +1,29 @@
 ---
 title: 'My First Blog Post'
+slug: 'my-first-blog-post' # Optional: For persistent URLs
 pubDate: 2022-07-01
+updatedDate: 2022-07-05 # Optional: For "Last updated" info
 description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
+author: oddlaceguy49
+draft: false # Optional: Helps filter unpublished posts
+
 image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+  url: 'https://docs.astro.build/assets/rose.webp'
+  alt: 'The Astro logo on a dark background with a pink glow.'
+  width: 1200 # Optional: Improves SEO/social previews
+  height: 630  # Optional: Recommended for Open Graph images
+
 tags: ["astro", "blogging", "learning in public"]
-layout: "@/layouts/BaseLayout.astro"
+category: "Development" # Optional: For blog organization and filters
+
+# readingTime: 3 # -> Compute this one :)
+canonicalUrl: 'https://yoursite.com/blog/my-first-blog-post'
+ogType: 'article' # Optional: For Open Graph
+lang: 'en' # Optional: Language of the article
+
+# Optional feature flags
+featured: false # Could be used to highlight a post on homepage
+series: "My Blogging Journey" # Optional: To group related posts
 ---
 import Button from "$lib/components/ui/button/button.svelte"
 
