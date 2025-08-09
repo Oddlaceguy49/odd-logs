@@ -6,11 +6,13 @@ import { defineConfig, passthroughImageService } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
+import mdx from "@astrojs/mdx";
+
 const siteUrl = "https://base-astro.copperdevs.com";
 
 // https://astro.build/config
 export default defineConfig({
-    site: import.meta.env.PROD ? siteUrl : "http://localhost:4321",
+    site: /*import.meta.env.PROD*/ true ? siteUrl : "http://localhost:4321",
     output: "server",
     adapter: cloudflare({
         imageService: "cloudflare",
@@ -19,10 +21,7 @@ export default defineConfig({
         },
     }),
     image: { service: passthroughImageService() },
-    integrations: [
-        svelte(),
-        sitemap(),
-    ],
+    integrations: [svelte(), sitemap(), mdx()],
     vite: {
         server: {
             watch: {
