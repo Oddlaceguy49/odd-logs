@@ -15,6 +15,10 @@
 
 /* Tailwind stuff */
 @import "tailwindcss";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 @import "tw-animate-css";
 
@@ -176,23 +180,97 @@
     --shadow-2xl: var(--shadow-2xl);
 }
 
-/* Other styling */
-body {
-    @apply bg-background text-foreground font-atkinson-hyperlegible;
-}
+/* Base styling */
+@layer base {
+    body {
+        @apply bg-background text-foreground font-atkinson-hyperlegible;
+    }
+    h1 {
+        @apply text-4xl font-extrabold tracking-tight lg:text-5xl mb-6;
+    }
 
-h1 {
-    @apply text-4xl font-extrabold tracking-tight lg:text-5xl mb-6;
-}
-h2 {
-    @apply text-3xl font-semibold tracking-tight border-b pb-2 mb-4;
-}
-h3 {
-    @apply text-2xl font-semibold tracking-tight mb-4;
-}
-h4 {
-    @apply text-xl font-semibold tracking-tight mb-4;
-}
-p {
-    @apply leading-7 [&:not(:first-child)]:mt-6;
+    h2 {
+        @apply text-3xl font-semibold tracking-tight border-b pb-2 mb-4;
+    }
+
+    h3 {
+        @apply text-2xl font-semibold tracking-tight mb-4;
+    }
+
+    h4 {
+        @apply text-xl font-semibold tracking-tight mb-4;
+    }
+
+    p {
+        @apply leading-7 [&:not(:first-child)]:mt-6;
+    }
+
+    a {
+        @apply text-blue-600 hover:underline font-medium;
+    }
+
+    strong {
+        @apply font-semibold;
+    }
+
+    em {
+        @apply italic;
+    }
+
+    code {
+        @apply font-mono text-sm bg-gray-100 px-1 py-0.5 rounded text-pink-600;
+    }
+
+    small {
+        @apply text-sm text-gray-500;
+    }
+
+    ul,
+    ol {
+        @apply ml-6 mt-4;
+    }
+
+    ul {
+        @apply list-disc;
+    }
+
+    ol {
+        @apply list-decimal;
+    }
+
+    li {
+        @apply mt-2;
+    }
+
+    blockquote {
+        @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 mt-6 mb-6;
+    }
+
+    table {
+        @apply w-full text-left border-collapse mt-6;
+    }
+
+    thead {
+        @apply border-b;
+    }
+
+    th {
+        @apply font-medium p-2 text-sm text-gray-700;
+    }
+
+    td {
+        @apply border-t p-2 text-sm text-gray-600;
+    }
+
+    img {
+        @apply max-w-full h-auto rounded;
+    }
+
+    hr {
+        @apply my-8 border-t border-gray-300;
+    }
+
+    pre {
+        @apply font-mono text-sm bg-gray-900 text-white p-4 rounded overflow-x-auto my-6;
+    }
 }
