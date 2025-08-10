@@ -1,32 +1,30 @@
 <script lang="ts">
-    let {
-        class: className = "", // Accept external classes
-        count = 0,
-        ...restProps // Accept all other HTML attributes (id, style, etc.)
-    } = $props();
+    import { cn } from "$lib/utils";
+    import Button from "$lib/components/ui/button/button.svelte";
+    import type { HTMLAttributes } from "svelte/elements";
+
+    type Props = {
+        count?: number;
+        class?: string;
+    } & HTMLAttributes<HTMLSpanElement>;
+
+    let { count = 0, class: className, ...restProps }: Props = $props();
+
+    const baseClasses =
+        "inline-flex h-5 w-[65px] items-center justify-between rounded-sm bg-primary align-middle text-xs font-bold shadow-md leading-none select-none";
 </script>
 
-<div class="inline-flex items-center align-middle {className}" {...restProps}>
-    <button
-        class="h-full cursor-pointer rounded-l-md bg-transparent px-2 font-bold text-white hover:bg-black/20"
-        onclick={() => (count = count - 1)}>-</button
+<span class={cn(baseClasses, className)} {...restProps}>
+    <Button
+        class="h-full flex-1 cursor-pointer rounded-l-sm bg-transparent px-2"
+        onclick={() => (count = count - 1)}>-</Button
     >
-    <span class="min-w-[2ch] px-1 text-center font-bold text-white"
-        >{count}</span
+    <span class="min-w-[2ch] text-center">{count}</span>
+    <Button
+        class="h-full flex-1 cursor-pointer rounded-r-sm bg-transparent px-2"
+        onclick={() => (count = count + 1)}>+</Button
     >
-    <button
-        class="h-full cursor-pointer rounded-r-md bg-transparent px-2 font-bold text-white hover:bg-black/20"
-        onclick={() => (count = count + 1)}>+</button
-    >
-</div>
+</span>
 
 <style>
-    div {
-        background: darkorange;
-        height: 24px; /* Slightly taller for better click targets */
-        font-size: 14px;
-        border-radius: 5px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        user-select: none; /* Prevents text selection when double-clicking */
-    }
 </style>

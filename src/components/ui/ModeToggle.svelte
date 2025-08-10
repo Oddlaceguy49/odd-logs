@@ -36,7 +36,6 @@
         <span class="sr-only">Toggle theme</span>
     </DropdownMenu.Trigger>
     <DropdownMenu.Content align="end">
-        <!-- 3. Use Svelte's on:click for event handling -->
         <DropdownMenu.Item onclick={() => setMode("light")}
             >Light</DropdownMenu.Item
         >

@@ -1,13 +1,10 @@
 /* Custom fonts */
 @font-face {
     font-family: "Atkinson Hyperlegible";
-    /* Make sure this path matches the name of your single variable file */
     src: url("/fonts/AtkinsonHyperlegibleNextVF-Variable.woff2") format("woff2");
 
-    /* The range of weights this file supports */
     font-weight: 200 800; /* ExtraLight to ExtraBold */
 
-    /* The range of styles this file supports */
     font-style: normal italic;
 
     font-display: swap;
@@ -19,15 +16,33 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
-
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Make dark: utilities match ancestor OR self, including .theme-dark islands */
+@custom-variant dark (&:where(.dark &, &.dark, .theme-dark &, &.theme-dark));
 
-/* @plugin "@tailwindcss/typography";
-@config "../../tailwind.config.ts"; */
+/* Islands: make subtrees actually inherit the right base props */
+.theme-light {
+    color-scheme: light;
+    color: var(--foreground);
+    background-color: var(
+        --background
+    ); /* remove if you don't want a filled bg */
+}
+.theme-dark {
+    color-scheme: dark;
+    color: var(--foreground);
+    background-color: var(--background);
+}
 
-:root {
+/* PASTE/REPLACE WITH SHADCN THEME OUTPUT
+   Keep the selector aliases exactly as they are below.
+   - Replace the contents of :is(:root, .theme-light) with the generator’s :root block
+   - Replace the contents of :is(.dark, .theme-dark) with the generator’s .dark block
+*/
+
+/* Light theme (global + islands) */
+:is(:root, .theme-light) {
     --background: oklch(0.98 0 0);
     --foreground: oklch(0.28 0.04 260.33);
     --card: oklch(1 0 0);
@@ -43,6 +58,7 @@
     --accent: oklch(0.93 0.03 273.66);
     --accent-foreground: oklch(0.37 0.03 259.73);
     --destructive: oklch(0.64 0.21 25.39);
+    --destructive-foreground: oklch(1 0 0);
     --border: oklch(0.87 0.01 261.81);
     --input: oklch(0.87 0.01 261.81);
     --ring: oklch(0.59 0.2 277.06);
@@ -81,7 +97,8 @@
     --shadow-2xl: 0px 4px 8px -1px oklch(0 0 0 / 0.25);
 }
 
-.dark {
+/* Dark theme (global + islands) */
+:is(.dark, .theme-dark) {
     --background: oklch(0.21 0.04 264.04);
     --foreground: oklch(0.93 0.01 256.71);
     --card: oklch(0.28 0.04 260.33);
@@ -97,6 +114,7 @@
     --accent: oklch(0.37 0.03 259.73);
     --accent-foreground: oklch(0.87 0.01 261.81);
     --destructive: oklch(0.64 0.21 25.39);
+    --destructive-foreground: oklch(0.98 0 0);
     --border: oklch(0.45 0.03 257.68);
     --input: oklch(0.45 0.03 257.68);
     --ring: oklch(0.68 0.16 276.93);
@@ -127,8 +145,11 @@
     --shadow-xl: 0 1px 3px 0px oklch(0 0 0 / 0.1),
         0 8px 10px -1px oklch(0 0 0 / 0.1);
     --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
+
+    color-scheme: dark; /* native controls */
 }
 
+/* Tailwind theme tokens mapping */
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -196,9 +217,9 @@
 
     /* --- TYPOGRAPHY & RHYTHM --- */
     /*
-     * Vertical rhythm: Headings have more space *above* and less *below*,
-     * visually grouping them with the content that follows.
-    */
+   * Vertical rhythm: Headings have more space above and less below,
+   * visually grouping them with the content that follows.
+  */
     h1 {
         @apply text-4xl font-extrabold tracking-tight lg:text-5xl mt-8 mb-6;
     }
@@ -216,7 +237,7 @@
     }
 
     p {
-        @apply leading-7 text-muted-foreground [&:not(:first-child)]:mt-6;
+        @apply leading-7 [&:not(:first-child)]:mt-6;
     }
 
     a {

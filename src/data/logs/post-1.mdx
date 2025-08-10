@@ -27,8 +27,10 @@ series: "My Blogging Journey" # Optional: To group related posts
 ---
 
 import Button from "$lib/components/ui/button/button.svelte";
-import Boinger from "src/components/ui/Boinger.svelte";
-import Counter from "src/components/ui/Counter.svelte";
+import Boinger from "@/components/ui/Boinger.svelte";
+import Counter from "@/components/ui/Counter.svelte";
+import Whiteboard from "@/components/ui/Whiteboard.svelte";
+import Invert from "@/components/utility/Invert.svelte";
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
 
@@ -79,4 +81,22 @@ Counter
 
 hi: <Counter client:visible />
 
-<Counter client:visible />
+<Invert client:only="svelte">
+    <Whiteboard>
+        <Counter style="--primary: oklch(0.86 0.22 85.87);"/>
+        This is **Markdown** content written directly inside my MDX file. It will be rendered inside the `Whiteboard` component's slot.
+
+        It gets parsed correctly, so I can have:
+
+        -   Lists
+        -   **Bold** and _italic_ text
+        -   Even other interactive components!
+
+        Check it out: <Counter/>
+
+        <Invert>
+            <Whiteboard>Even inverted inside an invert!</Whiteboard>
+        </Invert>
+
+    </Whiteboard>
+</Invert>

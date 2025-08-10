@@ -24,12 +24,13 @@
     <div class="boingers">
         {#each boingers.filter((v) => !v.boinged) as { val } (val)}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
             <div
                 animate:flip
                 in:receive={{ key: val }}
                 out:send={{ key: val }}
                 style="background:{color};"
-                on:click={() => toggleBoing(val)}
+                onclick={() => toggleBoing(val)}
             >
                 {val}
             </div>
@@ -39,12 +40,13 @@
     <div class="boingers">
         {#each boingers.filter((v) => v.boinged) as { val } (val)}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
             <div
                 animate:flip
                 in:receive={{ key: val }}
                 out:send={{ key: val }}
                 style="background:{color};"
-                on:click={() => toggleBoing(val)}
+                onclick={() => toggleBoing(val)}
             >
                 {val}
             </div>
