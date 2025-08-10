@@ -15,47 +15,47 @@ const authorData = author.data;
 
 <main class="py-8">
     <article class="prose-container">
-        <h1>{logData.title}</h1>
-
-        <div
-            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground italic"
-        >
-            {/* Author Link */}
-            <div>
-                <span>By </span>
-                <!-- <a
+        <h1 class="mb-1">{logData.title}</h1>
+        <div class="items-center gap-y-1 text-sm text-muted-foreground italic">
+            <div class="flex flex-wrap items-center gap-x-4">
+                {/* Author Link */}
+                <div>
+                    <span>By </span>
+                    <!-- <a
                     href={`/author/${authorData.slug}`}
                     class="font-medium text-foreground hover:underline"
                 > -->
-                {authorData.name}
+                    {authorData.name}
+                </div>
+
+                {/* Separator */}
+                <span aria-hidden="true">•</span>
+
+                {/* Publication Date */}
+                <time datetime={new Date(logData.pubDate).toISOString()}>
+                    {formatDate(logData.pubDate.toDateString())}
+                </time>
+
+                {/* Updated Date (conditional) */}
+                {
+                    logData.updatedDate && (
+                        <>
+                            <span aria-hidden="true">•</span>
+                            <time
+                                datetime={new Date(
+                                    logData.updatedDate
+                                ).toISOString()}
+                            >
+                                Updated:{" "}
+                                {formatDate(logData.updatedDate.toDateString())}
+                            </time>
+                        </>
+                    )
+                }
             </div>
 
-            {/* Separator */}
-            <span aria-hidden="true">•</span>
-
-            {/* Publication Date */}
-            <time datetime={new Date(logData.pubDate).toISOString()}>
-                {formatDate(logData.pubDate.toDateString())}
-            </time>
-
-            {/* Updated Date (conditional) */}
-            {
-                logData.updatedDate && (
-                    <>
-                        <span aria-hidden="true">•</span>
-                        <time
-                            datetime={new Date(
-                                logData.updatedDate
-                            ).toISOString()}
-                        >
-                            Updated:{" "}
-                            {formatDate(logData.updatedDate.toDateString())}
-                        </time>
-                    </>
-                )
-            }
+            <div>{stats.text}</div>
         </div>
-        <p>{stats.text}</p>
         <img
             src={logData.image.url}
             alt={logData.image.alt}

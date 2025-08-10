@@ -13,7 +13,7 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
-import rehypeCodeTitles from "rehype-code-titles";
+import remarkFlexibleCodeTitles from "remark-flexible-code-titles";
 
 const siteUrl = "https://base-astro.copperdevs.com";
 
@@ -30,12 +30,12 @@ export default defineConfig({
     image: { service: passthroughImageService() },
     markdown: {
         syntaxHighlight: "shiki",
-        remarkPlugins: [remarkToc],
+        shikiConfig: { theme: "dracula" },
+        remarkPlugins: [remarkToc, [remarkFlexibleCodeTitles, {}]],
         rehypePlugins: [
             rehypeSlug,
             rehypeAutolinkHeadings,
             rehypeExternalLinks,
-            rehypeCodeTitles,
         ],
         remarkRehype: { footnoteLabel: "References" },
         gfm: true,

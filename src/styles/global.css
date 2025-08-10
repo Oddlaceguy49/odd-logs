@@ -183,74 +183,108 @@
     --shadow-2xl: var(--shadow-2xl);
 }
 
-/* Base styling */
+/* Base styling for prose content */
 @layer base {
+    /* --- Globals --- */
+    * {
+        @apply border-border;
+    }
+
     body {
         @apply bg-background text-foreground font-atkinson-hyperlegible;
     }
+
+    /* --- TYPOGRAPHY & RHYTHM --- */
+    /*
+     * Vertical rhythm: Headings have more space *above* and less *below*,
+     * visually grouping them with the content that follows.
+    */
     h1 {
-        @apply text-4xl font-extrabold tracking-tight lg:text-5xl mb-6;
+        @apply text-4xl font-extrabold tracking-tight lg:text-5xl mt-8 mb-6;
     }
 
     h2 {
-        @apply text-3xl font-semibold tracking-tight border-b pb-2 mb-4;
+        @apply text-3xl font-semibold tracking-tight mt-12 mb-4;
     }
 
     h3 {
-        @apply text-2xl font-semibold tracking-tight mb-4;
+        @apply text-2xl font-semibold tracking-tight mt-8 mb-4;
     }
 
     h4 {
-        @apply text-xl font-semibold tracking-tight mb-4;
+        @apply text-xl font-semibold tracking-tight mt-8 mb-4;
     }
 
     p {
-        @apply leading-7 [&:not(:first-child)]:mt-6;
+        @apply leading-7 text-muted-foreground [&:not(:first-child)]:mt-6;
     }
 
     a {
-        @apply text-blue-600 hover:underline font-medium;
+        @apply text-primary font-medium no-underline hover:underline transition-colors;
     }
 
     strong {
-        @apply font-semibold;
+        @apply font-bold text-foreground;
     }
 
     em {
         @apply italic;
     }
 
-    code {
-        @apply font-mono text-sm bg-gray-100 px-1 py-0.5 rounded text-pink-600;
+    small {
+        @apply text-sm text-muted-foreground;
     }
 
-    small {
-        @apply text-sm text-gray-500;
+    /* --- Block & Inline Elements --- */
+    code {
+        @apply font-mono text-sm bg-muted text-accent-foreground px-1.5 py-1 rounded-md;
+    }
+
+    pre {
+        @apply font-mono bg-muted p-4 rounded-lg overflow-x-auto my-6;
+    }
+
+    pre > code {
+        all: unset;
+        display: inline;
+    }
+
+    blockquote {
+        @apply border-l-4 border-primary pl-6 italic text-muted-foreground my-8;
     }
 
     ul,
     ol {
-        @apply ml-6 mt-4;
-    }
-
-    ul {
-        @apply list-disc;
+        @apply my-6 ml-6 space-y-2;
     }
 
     ol {
         @apply list-decimal;
     }
 
+    ul {
+        @apply list-disc;
+    }
+
     li {
-        @apply mt-2;
+        @apply text-muted-foreground;
     }
 
-    blockquote {
-        @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 mt-6 mb-6;
+    li::marker {
+        @apply text-muted-foreground/70;
     }
 
+    img {
+        @apply max-w-full h-auto rounded-lg border my-8;
+    }
+
+    hr {
+        @apply my-12 border-none h-px bg-gradient-to-r from-transparent via-border to-transparent;
+    }
+
+    /* --- Tables --- */
     table {
-        @apply w-full text-left border-collapse mt-6;
+        @apply w-full text-left border-collapse my-6;
     }
 
     thead {
@@ -258,27 +292,11 @@
     }
 
     th {
-        @apply font-medium p-2 text-sm text-gray-700;
+        @apply font-semibold p-3 text-sm text-muted-foreground;
     }
 
     td {
-        @apply border-t p-2 text-sm text-gray-600;
-    }
-
-    img {
-        @apply max-w-full h-auto rounded;
-    }
-
-    hr {
-        @apply my-8 border-t border-gray-300;
-    }
-
-    pre {
-        @apply font-mono text-sm bg-gray-900 text-white p-4 rounded overflow-x-auto my-6;
-    }
-
-    pre > code {
-        all: unset;
+        @apply border-t p-3 text-sm text-muted-foreground;
     }
 }
 
@@ -286,5 +304,22 @@
 @layer components {
     .prose-container {
         @apply w-full max-w-3xl mx-auto px-4 py-8;
+    }
+
+    .section-heading {
+        @apply border-b pb-3;
+    }
+
+    /* Remark code titles */
+    .remark-code-container {
+        @apply bg-accent rounded-lg;
+    }
+
+    .remark-code-title {
+        @apply font-mono p-1.5 pl-5;
+    }
+
+    .remark-code-title + pre {
+        @apply m-0 rounded-tl-none rounded-tr-none;
     }
 }
