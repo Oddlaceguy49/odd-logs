@@ -1,37 +1,40 @@
 ---
-title: 'My First Blog Post'
-slug: 'my-first-blog-post' # Optional: For persistent URLs
+title: "My First Blog Post"
+slug: "my-first-blog-post" # Optional: For persistent URLs
 pubDate: 2022-07-01
 updatedDate: 2022-07-05 # Optional: For "Last updated" info
-description: 'This is the first post of my new Astro blog.'
+description: "This is the first post of my new Astro blog."
 author: oddlaceguy49
 draft: false # Optional: Helps filter unpublished posts
 
 image:
-  url: 'https://docs.astro.build/assets/rose.webp'
-  alt: 'The Astro logo on a dark background with a pink glow.'
-  width: 1200 # Optional: Improves SEO/social previews
-  height: 630  # Optional: Recommended for Open Graph images
+    url: "https://docs.astro.build/assets/rose.webp"
+    alt: "The Astro logo on a dark background with a pink glow."
+    width: 1200 # Optional: Improves SEO/social previews
+    height: 630 # Optional: Recommended for Open Graph images
 
 tags: ["astro", "blogging", "learning in public"]
 category: "Development" # Optional: For blog organization and filters
 
 # readingTime: 3 # -> Compute this one :)
-canonicalUrl: 'https://yoursite.com/blog/my-first-blog-post'
-ogType: 'article' # Optional: For Open Graph
-lang: 'en' # Optional: Language of the article
+canonicalUrl: "https://yoursite.com/blog/my-first-blog-post"
+ogType: "article" # Optional: For Open Graph
+lang: "en" # Optional: Language of the article
 
 # Optional feature flags
 featured: false # Could be used to highlight a post on homepage
 series: "My Blogging Journey" # Optional: To group related posts
 ---
-import Button from "$lib/components/ui/button/button.svelte"
+
+import Button from "$lib/components/ui/button/button.svelte";
+import Boinger from "src/components/ui/Boinger.svelte";
+import Counter from "src/components/ui/Counter.svelte";
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
 
 ## Contents
 
-## What I've accomplished
+## Tests
 
 1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
 
@@ -39,11 +42,11 @@ Welcome to my _new blog_ about learning Astro! Here, I will share my learning jo
 
 3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
 
-## What's next
+## Svelte Button Test
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
 
-<Button class="w-auto h-auto">
+<Button class="w-auto h-auto" client:visible>
     <h1 class="m-0">HI</h1>
 </Button>
 
@@ -54,5 +57,26 @@ console.log("Wowie! Code title!")
 ```
 
 ```js
-console.log("Yipee! No title!")
+console.log("Yipee! No title!");
 ```
+
+## Tests from MDsveX
+
+Boinger
+
+<Boinger color="orange" client:visible />
+
+Counter
+
+<Counter class="h-10" client:visible />
+
+<p>
+    <span class="inline-flex items-center gap-x-2">
+        <span>Inlined Counter:</span>
+        <Counter client:visible />
+    </span>
+</p>
+
+hi: <Counter client:visible />
+
+<Counter client:visible />
