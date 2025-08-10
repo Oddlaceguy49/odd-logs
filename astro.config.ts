@@ -8,6 +8,13 @@ import tailwindcss from "@tailwindcss/vite";
 
 import mdx from "@astrojs/mdx";
 
+import remarkToc from "remark-toc";
+
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypeCodeTitles from "rehype-code-titles";
+
 const siteUrl = "https://base-astro.copperdevs.com";
 
 // https://astro.build/config
@@ -21,6 +28,18 @@ export default defineConfig({
         },
     }),
     image: { service: passthroughImageService() },
+    markdown: {
+        syntaxHighlight: "shiki",
+        remarkPlugins: [remarkToc],
+        rehypePlugins: [
+            rehypeSlug,
+            rehypeAutolinkHeadings,
+            rehypeExternalLinks,
+            rehypeCodeTitles,
+        ],
+        remarkRehype: { footnoteLabel: "References" },
+        gfm: true,
+    },
     integrations: [svelte(), sitemap(), mdx()],
     vite: {
         server: {
