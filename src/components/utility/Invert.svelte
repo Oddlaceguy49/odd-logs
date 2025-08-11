@@ -11,9 +11,9 @@
             // `closest()` checks the element itself, then parents.
             const parent = rootElement.parentElement;
 
-            if (parent?.closest(".theme-light")) {
+            if (parent?.closest(".mode-light")) {
                 ancestorMode = "light";
-            } else if (parent?.closest(".theme-dark")) {
+            } else if (parent?.closest(".mode-dark")) {
                 ancestorMode = "dark";
             } else {
                 ancestorMode = null;
@@ -29,8 +29,8 @@
 <div
     bind:this={rootElement}
     class="contents"
-    class:theme-light={finalTheme() === "light"}
-    class:theme-dark={finalTheme() === "dark"}
+    class:mode-light={finalTheme() === "light"}
+    class:mode-dark={finalTheme() === "dark"}
 >
     <!-- <h3>I am the Child (DOM Check with Fallback)</h3>
 
@@ -45,7 +45,7 @@
     {@render children?.()}
 </div>
 
-<style>
+<!-- <style>
     .debug-info {
         border: 1px dashed #888;
         padding: 0.5rem;
@@ -53,12 +53,4 @@
         margin-bottom: 1rem;
         font-size: 0.9em;
     }
-    .theme-light {
-        background-color: #f0f0f0;
-        color: #111;
-    }
-    .theme-dark {
-        background-color: #222;
-        color: #eee;
-    }
-</style>
+</style> -->

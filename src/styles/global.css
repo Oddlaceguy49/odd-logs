@@ -18,18 +18,18 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "tw-animate-css";
 
-/* Make dark: utilities match ancestor OR self, including .theme-dark islands */
-@custom-variant dark (&:where(.dark &, &.dark, .theme-dark &, &.theme-dark));
+/* Make dark: utilities match ancestor OR self, including .mode-dark islands */
+@custom-variant dark (&:where(.dark &, &.dark, .mode-dark &, &.mode-dark));
 
 /* Islands: make subtrees actually inherit the right base props */
-.theme-light {
+.mode-light {
     color-scheme: light;
     color: var(--foreground);
     background-color: var(
         --background
     ); /* remove if you don't want a filled bg */
 }
-.theme-dark {
+.mode-dark {
     color-scheme: dark;
     color: var(--foreground);
     background-color: var(--background);
@@ -37,12 +37,12 @@
 
 /* PASTE/REPLACE WITH SHADCN THEME OUTPUT
    Keep the selector aliases exactly as they are below.
-   - Replace the contents of :is(:root, .theme-light) with the generator’s :root block
-   - Replace the contents of :is(.dark, .theme-dark) with the generator’s .dark block
+   - Replace the contents of :is(:root, .mode-light) with the generator’s :root block
+   - Replace the contents of :is(.dark, .mode-dark) with the generator’s .dark block
 */
 
 /* Light theme (global + islands) */
-:is(:root, .theme-light) {
+:is(:root, .mode-light) {
     --background: oklch(0.98 0 0);
     --foreground: oklch(0.28 0.04 260.33);
     --card: oklch(1 0 0);
@@ -95,10 +95,12 @@
     --shadow-xl: 0px 4px 8px -1px oklch(0 0 0 / 0.1),
         0px 8px 10px -2px oklch(0 0 0 / 0.1);
     --shadow-2xl: 0px 4px 8px -1px oklch(0 0 0 / 0.25);
+
+    color-scheme: light; /* native controls */
 }
 
 /* Dark theme (global + islands) */
-:is(.dark, .theme-dark) {
+:is(.dark, .mode-dark) {
     --background: oklch(0.21 0.04 264.04);
     --foreground: oklch(0.93 0.01 256.71);
     --card: oklch(0.28 0.04 260.33);
@@ -146,7 +148,7 @@
         0 8px 10px -1px oklch(0 0 0 / 0.1);
     --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.25);
 
-    color-scheme: dark; /* native controls */
+    color-scheme: dark;
 }
 
 /* Tailwind theme tokens mapping */
