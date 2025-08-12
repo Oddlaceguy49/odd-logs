@@ -30,7 +30,7 @@ import Button from "$lib/components/ui/button/button.svelte";
 import Boinger from "@/components/ui/Boinger.svelte";
 import Counter from "@/components/ui/Counter.svelte";
 import Whiteboard from "@/components/ui/Whiteboard.svelte";
-import Invert from "@/components/utility/Invert.svelte";
+import InvertMode from "@/components/utility/InvertMode.svelte";
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
 
@@ -81,7 +81,11 @@ Counter
 
 hi: <Counter client:load />
 
-<Invert client:only="svelte">
+<Whiteboard>
+    <Counter />
+</Whiteboard>
+
+<InvertMode client:load>
     <Whiteboard>
         <Counter style="--primary: oklch(0.86 0.22 85.87);" client:load/>
         This is **Markdown** content written directly inside my MDX file. It will be rendered inside the `Whiteboard` component's slot.
@@ -94,12 +98,22 @@ hi: <Counter client:load />
 
         Check it out: <Counter client:load />
 
-        <Invert>
+        <InvertMode client:load>
             <Whiteboard>
                 Even inverted inside an invert!
                 <Boinger color="orange" client:load />
+                <InvertMode client:load>
+                    <Whiteboard>
+                        Even inverted inside an invert!
+                        <InvertMode client:load>
+                            <Whiteboard>
+                                Even inverted inside an invert!
+                            </Whiteboard>
+                        </InvertMode>
+                    </Whiteboard>
+                </InvertMode>
             </Whiteboard>
-        </Invert>
+        </InvertMode>
 
     </Whiteboard>
-</Invert>
+</InvertMode>
