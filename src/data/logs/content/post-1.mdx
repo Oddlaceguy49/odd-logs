@@ -1,0 +1,119 @@
+---
+title: "My First Blog Post"
+slug: "my-first-blog-post" # Optional: For persistent URLs
+pubDate: 2022-07-01
+updatedDate: 2022-07-05 # Optional: For "Last updated" info
+description: "This is the first post of my new Astro blog."
+author: oddlaceguy49
+draft: false # Optional: Helps filter unpublished posts
+
+image:
+    url: "https://docs.astro.build/assets/rose.webp"
+    alt: "The Astro logo on a dark background with a pink glow."
+    width: 1200 # Optional: Improves SEO/social previews
+    height: 630 # Optional: Recommended for Open Graph images
+
+tags: ["astro", "blogging", "learning in public"]
+category: "Development" # Optional: For blog organization and filters
+
+# readingTime: 3 # -> Compute this one :)
+canonicalUrl: "https://yoursite.com/blog/my-first-blog-post"
+ogType: "article" # Optional: For Open Graph
+lang: "en" # Optional: Language of the article
+
+# Optional feature flags
+featured: false # Could be used to highlight a post on homepage
+series: "My Blogging Journey" # Optional: To group related posts
+---
+
+import Button from "$lib/components/ui/button/button.svelte";
+import Boinger from "@/components/ui/Boinger.svelte";
+import Counter from "@/components/ui/Counter.svelte";
+import Whiteboard from "@/components/ui/Whiteboard.svelte";
+import InvertMode from "@/components/utility/InvertMode.svelte";
+
+Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+## Contents
+
+## Tests
+
+1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
+
+2. **Making Pages**: I then learned how to make pages by creating new `.astro` files and placing them in the `src/pages/` folder.
+
+3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
+
+## Svelte Button Test
+
+I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+
+<Button class="w-auto h-auto" client:load>
+    <h1 class="m-0">HI</h1>
+</Button>
+
+## Code Example
+
+```typescript:lib/mdx.ts
+console.log("Wowie! Code title!")
+```
+
+```js
+console.log("Yipee! No title!");
+```
+
+## Tests from MDsveX
+
+Boinger
+
+<Boinger color="orange" client:load />
+
+Counter
+
+<Counter class="h-10" client:load />
+
+<p>
+    <span class="inline-flex items-center gap-x-2">
+        <span>Inlined Counter:</span>
+        <Counter client:load />
+    </span>
+</p>
+
+hi: <Counter client:load />
+
+<Whiteboard>
+    <Counter />
+</Whiteboard>
+
+<InvertMode client:load>
+    <Whiteboard>
+        <Counter style="--primary: oklch(0.86 0.22 85.87);" client:load/>
+        This is **Markdown** content written directly inside my MDX file. It will be rendered inside the `Whiteboard` component's slot.
+
+        It gets parsed correctly, so I can have:
+
+        -   Lists
+        -   **Bold** and _italic_ text
+        -   Even other interactive components!
+
+        Check it out: <Counter client:load />
+
+        <InvertMode client:load>
+            <Whiteboard>
+                Even inverted inside an invert!
+                <Boinger color="orange" client:load />
+                <InvertMode client:load>
+                    <Whiteboard>
+                        Even inverted inside an invert!
+                        <InvertMode client:load>
+                            <Whiteboard>
+                                Even inverted inside an invert!
+                            </Whiteboard>
+                        </InvertMode>
+                    </Whiteboard>
+                </InvertMode>
+            </Whiteboard>
+        </InvertMode>
+
+    </Whiteboard>
+</InvertMode>

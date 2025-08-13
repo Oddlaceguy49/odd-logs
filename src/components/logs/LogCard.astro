@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Props {
+    log: CollectionEntry<"logs">;
+    PreviewComponent?: AstroComponentFactory;
+}
+
+const { log, PreviewComponent } = Astro.props;
+---
+
+<!-- 
+  =====================================================================
+  THIS IS THE CONTAINER THAT CONTROLS EVERYTHING:
+  1. It has `relative` to be the positioning context.
+  2. It has `max-h-[25rem]` to set the maximum height.
+  3. It has `overflow-hidden` to do the clipping.
+  =====================================================================
+-->
+<article
+    class="relative max-h-[25rem] overflow-hidden rounded-lg border bg-white"
+>
+    <!-- The image is forced to layer 0 -->
+    <img
+        src={log.data.image.url}
+        alt={log.data.image.alt}
+        class="relative z-0 w-full object-cover"
+    />
+
+    <!-- The text content block -->
+    <div class="p-4">
+        <a
+            href={`/logs/${log.data.slug}/`}
+            class="text-xl font-bold hover:underline"
+        >
+            {log.data.title}
+        </a>
+
+        <div class="mt-2">
+            {PreviewComponent && <PreviewComponent />}
+        </div>
+    </div>
+
+    <!-- 
+    The fade overlay is now positioned relative to THIS article,
+    and since it has a higher z-index, it will correctly sit on top
+    of the content that is being clipped.
+  -->
+    <div class="card-fade-out"></div>
+</article>

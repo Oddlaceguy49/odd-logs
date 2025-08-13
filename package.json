@@ -40,7 +40,7 @@
   },
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "bun run ./scripts/generatePreviews.ts && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

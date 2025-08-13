@@ -27,7 +27,9 @@ const stats = readingTime(log.body ?? "");
 ---
 
 <BaseLayout>
-    <LogLayout log={log} author={author} stats={stats}>
-        <Content />
-    </LogLayout>
+    <div class="py-8">
+        <LogLayout log={log} author={author} stats={stats}>
+            <Content />
+        </LogLayout>
+    </div>
 </BaseLayout>

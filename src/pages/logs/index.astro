@@ -1,0 +1,75 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LogLayout from "@/layouts/LogLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import readingTime from "reading-time";
+import { ChevronLeft } from "@lucide/svelte";
+
+const logs = await getCollection("logs");
+if (!logs) {
+    throw new Error(`Logs not found`);
+}
+
+console.log(logs.length);
+
+const logPreviews = await getCollection("logPreviews");
+if (!logPreviews) {
+    throw new Error(`LogPreviews not found`);
+}
+// const { Content, headings } = await render(log);
+
+// const author = await getEntry(logData.author.collection, logData.author.id);
+// if (!author) {
+//     throw new Error(`Author not found for slug: ${logData.author.id}`);
+// }
+// const authorData = author.data;
+
+// const stats = readingTime(log.body ?? "");
+---
+
+<BaseLayout>
+    <div class="prose-container">
+        <a class="flex link-button" href="/"><ChevronLeft />HOME</a>
+        <br />
+        <div class="flex flex-col gap-y-1">
+            {
+                logs.map(async (log) => {
+                    const preview = logPreviews.find(
+                        (preview) => preview.data.slug === log.data.slug
+                    );
+                    if (!preview) {
+                        throw new Error(
+                            `Preview not found for slug: ${log.data.slug}`
+                        );
+                    }
+                    const { Content, headings } = await render(preview);
+
+                    const author = await getEntry(
+                        log.data.author.collection,
+                        log.data.author.id
+                    );
+                    if (!author) {
+                        throw new Error(
+                            `Author not found for slug: ${log.data.author.id}`
+                        );
+                    }
+
+                    const stats = readingTime(log.body ?? "");
+
+                    return (
+                        <a href={`/logs/${log.data.slug}`} class="link-button">
+                            <LogLayout
+                                log={log}
+                                author={author}
+                                stats={stats}
+                                preview={true}
+                            >
+                                <Content />
+                            </LogLayout>
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </div>
+</BaseLayout>
