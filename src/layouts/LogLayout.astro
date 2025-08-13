@@ -26,9 +26,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 ---
 
 <div>
-    <article
-        class=`${preview ? "py-0 card-fade-out h-[11rem] bg-background" : "prose-container"}`
-    >
+    <article class=`prose-container ${preview ? "py-4" : ""}`>
         <div class="mb-4">
             <h2 class="-mb-1">{logData.title}</h2>
             <div

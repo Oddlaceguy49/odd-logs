@@ -363,6 +363,11 @@
 
     .link-button {
         @apply text-inherit no-underline;
-        @apply hover:brightness-50;
+        /* @apply hover:brightness-50; */
+        @apply hover:bg-white/5;
+    }
+
+    button {
+        @apply no-underline;
     }
 }
