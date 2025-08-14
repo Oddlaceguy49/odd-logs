@@ -61,4 +61,5 @@ export default defineConfig({
     devToolbar: {
         enabled: false,
     },
+    prefetch: true,
 });
