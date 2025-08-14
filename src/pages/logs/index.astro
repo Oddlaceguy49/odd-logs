@@ -63,19 +63,18 @@ const logBorderWidth = "1px";
                     const stats = readingTime(log.body ?? "");
 
                     return (
-                        <div class={`py-2 border-b`}>
+                        <div class="py-2 border-b">
                             <a
                                 href={`/logs/${log.data.slug}`}
                                 class="link-button"
                             >
                                 <div
-                                    class={`card-fade-out h-[11rem] link-button rounded-lg`}
+                                    class={`card-fade-out p-4 h-[11rem] link-button rounded-lg`}
                                 >
                                     <LogLayout
                                         log={log}
                                         author={author}
                                         stats={stats}
-                                        preview={true}
                                     >
                                         <Content />
                                     </LogLayout>

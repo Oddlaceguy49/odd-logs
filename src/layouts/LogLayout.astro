@@ -6,9 +6,8 @@ interface Props {
     log: CollectionEntry<"logs">;
     author: CollectionEntry<"authors">;
     stats: ReadTimeResults;
-    preview?: boolean;
 }
-const { log, author, stats, preview = false } = Astro.props;
+const { log, author, stats } = Astro.props;
 
 const logData = log.data;
 const authorData = author.data;
@@ -25,17 +24,16 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 };
 ---
 
-<div>
-    <article class=`prose-container ${preview ? "py-4" : ""}`>
-        <div class="mb-4">
-            <h2 class="-mb-1">{logData.title}</h2>
-            <div
-                class="flex justify-between text-base text-muted-foreground italic"
-            >
-                <div class="flex flex-wrap items-center gap-x-4">
-                    {/* Author Link */}
-                    {
-                        /* <div>
+<article>
+    <div class="mb-4">
+        <h2 class="-mb-1">{logData.title}</h2>
+        <div
+            class="flex justify-between text-base text-muted-foreground italic"
+        >
+            <div class="flex flex-wrap items-center gap-x-4">
+                {/* Author Link */}
+                {
+                    /* <div>
                         <span>By </span>
                         <!-- <a
                     href={`/author/${authorData.slug}`}
@@ -43,49 +41,43 @@ const dateOptions: Intl.DateTimeFormatOptions = {
                 > -->
                         {authorData.name}
                     </div> */
-                    }
+                }
 
-                    {/* Separator */}
-                    <!-- <span aria-hidden="true">•</span> -->
+                {/* Separator */}
+                <!-- <span aria-hidden="true">•</span> -->
 
-                    {/* Publication Date */}
-                    <time datetime={new Date(logData.pubDate).toISOString()}>
-                        {
-                            formatDate(
-                                logData.pubDate.toLocaleString(),
-                                dateOptions
-                            )
-                        }
-                    </time>
+                {/* Publication Date */}
+                <time datetime={new Date(logData.pubDate).toISOString()}>
+                    {formatDate(logData.pubDate.toLocaleString(), dateOptions)}
+                </time>
 
-                    {/* Separator */}
-                    <span aria-hidden="true">•</span>
+                {/* Separator */}
+                <span aria-hidden="true">•</span>
 
-                    <div>{stats.text}</div>
-                </div>
-                <div class="flex flex-wrap items-center gap-x-4">
-                    {/* Updated Date (condi</div>tional) */}
-                    {
-                        logData.updatedDate && (
-                            <>
-                                {/* <span aria-hidden="true">•</span> */}
-                                <time
-                                    datetime={new Date(
-                                        logData.updatedDate
-                                    ).toISOString()}
-                                >
-                                    Last Updated:{" "}
-                                    {formatDate(
-                                        logData.updatedDate.toDateString(),
-                                        dateOptions
-                                    )}
-                                </time>
-                            </>
-                        )
-                    }
-                </div>
+                <div>{stats.text}</div>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-4">
+                {/* Updated Date (condi</div>tional) */}
+                {
+                    logData.updatedDate && (
+                        <>
+                            {/* <span aria-hidden="true">•</span> */}
+                            <time
+                                datetime={new Date(
+                                    logData.updatedDate
+                                ).toISOString()}
+                            >
+                                Last Updated:{" "}
+                                {formatDate(
+                                    logData.updatedDate.toDateString(),
+                                    dateOptions
+                                )}
+                            </time>
+                        </>
+                    )
+                }
             </div>
         </div>
-        <slot />
-    </article>
-</div>
+    </div>
+    <slot />
+</article>

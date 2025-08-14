@@ -3,6 +3,8 @@ import { getEntry, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LogLayout from "@/layouts/LogLayout.astro";
 import readingTime from "reading-time";
+import { ChevronLeft } from "@lucide/svelte";
+import Button from "$lib/components/ui/button/button.svelte";
 
 const { slug } = Astro.params;
 if (!slug) {
@@ -27,9 +29,14 @@ const stats = readingTime(log.body ?? "");
 ---
 
 <BaseLayout>
-    <div class="py-8">
-        <LogLayout log={log} author={author} stats={stats}>
-            <Content />
-        </LogLayout>
+    <div class="prose-container">
+        <Button asChild class="py-0" variant="ghost" href="/logs"
+            ><div class="inline-flex"><ChevronLeft />Back</div></Button
+        >
+        <div class="py-8">
+            <LogLayout log={log} author={author} stats={stats}>
+                <Content />
+            </LogLayout>
+        </div>
     </div>
 </BaseLayout>
