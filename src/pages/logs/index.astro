@@ -27,14 +27,15 @@ if (!logPreviews) {
 
 // const stats = readingTime(log.body ?? "");
 
-const logBorderWidth = 1;
+const logBorderWidth = "1px";
 ---
 
 <BaseLayout>
     <div class="prose-container">
         <a class="flex link-button" href="/"><ChevronLeft />HOME</a>
         <br />
-        <div class={`flex flex-col border-t-${logBorderWidth}`}>
+        <div class="flex flex-col">
+            <div class="border-b"></div>
             {
                 logs.map(async (log) => {
                     const preview = logPreviews.find(
@@ -60,7 +61,7 @@ const logBorderWidth = 1;
                     const stats = readingTime(log.body ?? "");
 
                     return (
-                        <div class={`py-2 border-b-${logBorderWidth}`}>
+                        <div class={`py-2 border-b`}>
                             <a
                                 href={`/logs/${log.data.slug}`}
                                 class="link-button"
@@ -85,3 +86,9 @@ const logBorderWidth = 1;
         </div>
     </div>
 </BaseLayout>
+
+<style define:vars={{ logBorderWidth }}>
+    .border-b {
+        border-bottom-width: var(--logBorderWidth);
+    }
+</style>
