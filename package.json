@@ -21,6 +21,7 @@
     "@types/bun": "latest",
     "bits-ui": "^2.8.6",
     "clsx": "^2.1.1",
+    "glob": "^11.0.3",
     "rehype": "^13.0.2",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-external-links": "^3.0.0",
