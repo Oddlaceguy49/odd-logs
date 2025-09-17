@@ -1,11 +1,11 @@
 import fs from "fs/promises";
-import path from "path";
 import { glob } from "glob";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkMdx from "remark-mdx";
-import remarkStringify from "remark-stringify";
 import type { Root, RootContent } from "mdast";
+import path from "path";
+import remarkMdx from "remark-mdx";
+import remarkParse from "remark-parse";
+import remarkStringify from "remark-stringify";
+import { unified } from "unified";
 import { LOG_PATH, LOG_PREVIEW_PATH } from "@/data/logs/logConfig";
 
 const contentDir: string = path.join(process.cwd(), LOG_PATH);
@@ -36,12 +36,12 @@ function splitContent(
 const mdxProcessor = unified()
     .use(remarkParse)
     .use(remarkMdx)
-    .use(remarkStringify)
-    .use(remarkMdx);
+    .use(remarkStringify);
 
 async function generatePreviews(): Promise<void> {
     console.log("🚀 Generating previews with AST-based safe fallback...");
 
+    await fs.rm(previewDir, { recursive: true, force: true });
     await fs.mkdir(previewDir, { recursive: true });
     const files = await glob(`${contentDir}/**/*.mdx`);
 
