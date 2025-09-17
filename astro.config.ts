@@ -1,32 +1,28 @@
 import cloudflare from "@astrojs/cloudflare";
-
-import svelte from "@astrojs/svelte";
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig, passthroughImageService } from "astro/config";
+import svelte from "@astrojs/svelte";
 
 import tailwindcss from "@tailwindcss/vite";
-
-import mdx from "@astrojs/mdx";
-
-import remarkToc from "remark-toc";
-
-import rehypeSlug from "rehype-slug";
+import { defineConfig, passthroughImageService } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeSlug from "rehype-slug";
 import remarkFlexibleCodeTitles from "remark-flexible-code-titles";
+import remarkToc from "remark-toc";
 
 const siteUrl = "https://base-astro.copperdevs.com";
 
 // https://astro.build/config
 export default defineConfig({
     site: /*import.meta.env.PROD*/ true ? siteUrl : "http://localhost:4321",
-    output: "server",
-    adapter: cloudflare({
-        imageService: "cloudflare",
-        platformProxy: {
-            enabled: true,
-        },
-    }),
+    output: "static",
+    // adapter: cloudflare({
+    //     imageService: "cloudflare",
+    //     platformProxy: {
+    //         enabled: true,
+    //     },
+    // }),
     image: { service: passthroughImageService() },
     markdown: {
         syntaxHighlight: "shiki",

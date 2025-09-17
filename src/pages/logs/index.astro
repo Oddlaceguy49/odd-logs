@@ -1,9 +1,9 @@
 ---
+import { getCollection, getEntry, render } from "astro:content";
+import { ChevronLeft } from "@lucide/svelte";
+import readingTime from "reading-time";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LogLayout from "@/layouts/LogLayout.astro";
-import { getCollection, getEntry, render } from "astro:content";
-import readingTime from "reading-time";
-import { ChevronLeft } from "@lucide/svelte";
 import Button from "$lib/components/ui/button/button.svelte";
 
 const logs = await getCollection("logs");
@@ -11,12 +11,51 @@ if (!logs) {
     throw new Error(`Logs not found`);
 }
 
-console.log(logs.length);
+console.log(`Found ${logs.length} logs.`);
+
+const previewCache = new Map();
 
 const logPreviews = await getCollection("logPreviews");
 if (!logPreviews) {
     throw new Error(`LogPreviews not found`);
 }
+
+const previewBySlug = new Map(logPreviews.map((p) => [p.data.slug, p]));
+
+type Item = {
+    log: (typeof logs)[number];
+    author: Awaited<ReturnType<typeof getEntry>>;
+    stats: ReturnType<typeof readingTime>;
+    PreviewContent: any;
+};
+
+const items: Item[] = (
+    await Promise.all(
+        logs.map(async (log) => {
+            if (!log.data.slug) return null;
+            const preview = previewBySlug.get(log.data.slug);
+            if (!preview) return null;
+
+            let rendered = previewCache.get(preview.id);
+            if (!rendered) {
+                rendered = await render(preview);
+                previewCache.set(preview.id, rendered);
+            }
+            const { Content: PreviewContent } = rendered;
+
+            const author = await getEntry(
+                log.data.author.collection,
+                log.data.author.id
+            );
+            if (!author) return null;
+
+            const stats = readingTime(log.body ?? "");
+
+            return { log, author, stats, PreviewContent };
+        })
+    )
+).filter(Boolean) as Item[];
+
 // const { Content, headings } = await render(log);
 
 // const author = await getEntry(logData.author.collection, logData.author.id);
@@ -39,50 +78,21 @@ const logBorderWidth = "1px";
         <div class="flex flex-col">
             <div class="border-b"></div>
             {
-                logs.map(async (log) => {
-                    const preview = logPreviews.find(
-                        (preview) => preview.data.slug === log.data.slug
-                    );
-                    if (!preview) {
-                        throw new Error(
-                            `Preview not found for slug: ${log.data.slug}`
-                        );
-                    }
-                    const { Content, headings } = await render(preview);
-
-                    const author = await getEntry(
-                        log.data.author.collection,
-                        log.data.author.id
-                    );
-                    if (!author) {
-                        throw new Error(
-                            `Author not found for slug: ${log.data.author.id}`
-                        );
-                    }
-
-                    const stats = readingTime(log.body ?? "");
-
-                    return (
-                        <div class="py-2 border-b">
-                            <a
-                                href={`/logs/${log.data.slug}`}
-                                class="link-button"
-                            >
-                                <div
-                                    class={`card-fade-out p-4 h-[11rem] link-button rounded-lg`}
+                items.map(({ log, author, stats, PreviewContent }) => (
+                    <div class="py-2 border-b">
+                        <a href={`/logs/${log.data.slug}`} class="link-button">
+                            <div class="card-fade-out p-4 h-[11rem] link-button rounded-lg">
+                                <LogLayout
+                                    log={log}
+                                    author={author}
+                                    stats={stats}
                                 >
-                                    <LogLayout
-                                        log={log}
-                                        author={author}
-                                        stats={stats}
-                                    >
-                                        <Content />
-                                    </LogLayout>
-                                </div>
-                            </a>
-                        </div>
-                    );
-                })
+                                    <PreviewContent />
+                                </LogLayout>
+                            </div>
+                        </a>
+                    </div>
+                ))
             }
         </div>
     </div>

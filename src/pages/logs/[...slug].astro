@@ -1,10 +1,17 @@
 ---
-import { getEntry, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
+import { ChevronLeft } from "@lucide/svelte";
+import readingTime from "reading-time";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LogLayout from "@/layouts/LogLayout.astro";
-import readingTime from "reading-time";
-import { ChevronLeft } from "@lucide/svelte";
 import Button from "$lib/components/ui/button/button.svelte";
+
+export async function getStaticPaths() {
+    const logs = await getCollection("logs");
+    return logs.map((entry) => ({
+        params: { slug: entry.data.slug },
+    }));
+}
 
 const { slug } = Astro.params;
 if (!slug) {
