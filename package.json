@@ -44,7 +44,8 @@
     "dev": "bun run ./scripts/generatePreviews.ts && astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "bp": "bun run build && bun run preview"
   },
   "type": "module"
 }
