@@ -1,7 +1,7 @@
 ---
+import ModeToggle from "@/components/ui/ModeToggle.svelte";
 import Welcome from "@/components/Welcome.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import ModeToggle from "@/components/ui/ModeToggle.svelte";
 import Button from "$lib/components/ui/button/button.svelte";
 ---
 
@@ -10,7 +10,7 @@ import Button from "$lib/components/ui/button/button.svelte";
         class="relative flex min-h-screen flex-col items-center justify-center p-4"
     >
         <div class="absolute top-4 right-4">
-            <ModeToggle client:load />
+            <ModeToggle client:visible />
         </div>
         <div class="text-center">
             <h1>Welcome to 0dd Logs</h1>
