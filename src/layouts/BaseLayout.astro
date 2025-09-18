@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import { ClientRouter, fade } from "astro:transitions";
 import { ModeWatcher } from "mode-watcher";
 ---
 
@@ -28,28 +29,37 @@ import { ModeWatcher } from "mode-watcher";
     }
 </script>
 
+<script is:inline>
+    document.addEventListener("astro:after-swap", () => {
+        const isDark = getThemePreference() === "dark";
+        document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    });
+</script>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+
         <title>Astro Basics</title>
+        <ClientRouter />
     </head>
     <body>
         <ModeWatcher client:load />
         <!-- <BaseSvelteLayout client:load /> -->
-        <main>
+        <main transition:animate="slide">
             <slot />
         </main>
+
+        <style>
+            html,
+            body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
     </body>
 </html>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
