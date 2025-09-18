@@ -39,7 +39,9 @@ import { ModeWatcher } from "mode-watcher";
     <body>
         <ModeWatcher client:load />
         <!-- <BaseSvelteLayout client:load /> -->
-        <slot />
+        <main>
+            <slot />
+        </main>
     </body>
 </html>
 
