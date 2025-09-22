@@ -80,17 +80,17 @@ const logBorderWidth = "1px";
             {
                 items.map(({ log, author, stats, PreviewContent }) => (
                     <div class="py-2 border-b">
-                        <a href={`/logs/${log.data.slug}`} class="link-button">
-                            <div class="card-fade-out p-4 h-[11rem] link-button rounded-lg">
-                                <LogLayout
-                                    log={log}
-                                    author={author}
-                                    stats={stats}
-                                >
-                                    <PreviewContent />
-                                </LogLayout>
-                            </div>
-                        </a>
+                        <div class="card-fade-out h-[11rem] rounded-lg link-button">
+                            <LogLayout log={log} author={author} stats={stats}>
+                                <PreviewContent />
+                            </LogLayout>
+
+                            <a
+                                href={`/logs/${log.data.slug}`}
+                                class="link-button absolute inset-0 z-10"
+                                aria-label={`Read ${log.data.title}`}
+                            />
+                        </div>
                     </div>
                 ))
             }

@@ -11,6 +11,8 @@ import rehypeSlug from "rehype-slug";
 import remarkFlexibleCodeTitles from "remark-flexible-code-titles";
 import remarkToc from "remark-toc";
 
+import vtbot from "astro-vtbot";
+
 const siteUrl = "https://base-astro.copperdevs.com";
 
 // https://astro.build/config
@@ -36,7 +38,7 @@ export default defineConfig({
         remarkRehype: { footnoteLabel: "References" },
         gfm: true,
     },
-    integrations: [svelte(), sitemap(), mdx()],
+    integrations: [svelte(), sitemap(), mdx(), vtbot()],
     vite: {
         server: {
             watch: {

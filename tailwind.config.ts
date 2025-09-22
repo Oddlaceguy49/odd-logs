@@ -10,24 +10,7 @@ const config: Config = {
 
     theme: {
         extend: {
-            keyframes: {
-                fade: {
-                    from: { opacity: "0" },
-                    to: { opacity: "1" },
-                },
-                "slide-from-right": {
-                    from: { transform: "translateX(30px)" },
-                    to: { transform: "translateX(0)" },
-                },
-                "slide-from-left": {
-                    from: { transform: "translateX(-30px)" },
-                    to: { transform: "translateX(0)" },
-                },
-            },
-            animation: {
-                "fade-in": "fade 0.4s ease-out",
-                "slide-in-right": "slide-from-right 0.4s ease-out",
-            },
+            keyframes: {},
         },
     },
 

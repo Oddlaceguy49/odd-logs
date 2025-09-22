@@ -1,7 +1,71 @@
 ---
+import { combineAnimations, slideAndFade } from "$lib/animations/animations";
 import "@/styles/global.css";
-import { ClientRouter, fade } from "astro:transitions";
+import { ClientRouter, fade, slide } from "astro:transitions";
+import type { TransitionDirectionalAnimations } from "astro";
 import { ModeWatcher } from "mode-watcher";
+
+const transitionDuration = 1000;
+const slideAndFadeTransition: TransitionDirectionalAnimations = {
+    forwards: {
+        old: [
+            {
+                name: "fade-in",
+                duration: transitionDuration,
+                easing: "ease-in",
+                direction: "reverse",
+            },
+            {
+                name: "slide-from-right",
+                duration: transitionDuration,
+                easing: "ease-in",
+                direction: "reverse",
+            },
+        ],
+        new: [
+            {
+                name: "fade-in",
+                duration: transitionDuration,
+                easing: "ease-in",
+            },
+            {
+                name: "slide-from-left",
+                duration: transitionDuration,
+                easing: "ease-in",
+            },
+        ],
+    },
+    backwards: {
+        old: [
+            {
+                name: "fade-in",
+                duration: transitionDuration,
+                easing: "ease-in",
+                direction: "reverse",
+            },
+            {
+                name: "slide-from-left",
+                duration: transitionDuration,
+                easing: "ease-in",
+                direction: "reverse",
+            },
+        ],
+        new: [
+            {
+                name: "fade-in",
+                duration: transitionDuration,
+                easing: "ease-in",
+            },
+            {
+                name: "slide-from-right",
+                duration: transitionDuration,
+                easing: "ease-in",
+            },
+        ],
+    },
+};
+
+const slideDistance = "5%";
 ---
 
 <script is:inline>
@@ -47,7 +111,10 @@ import { ModeWatcher } from "mode-watcher";
     <body>
         <ModeWatcher client:load transition:persist="mode-watcher" />
         <!-- <BaseSvelteLayout client:load /> -->
-        <main transition:animate="slide">
+        <main
+            transition:animate={slideAndFadeTransition}
+            style={`--slide-distance: ${slideDistance};`}
+        >
             <slot />
         </main>
 
