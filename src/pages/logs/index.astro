@@ -1,10 +1,13 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import { ChevronLeft } from "@lucide/svelte";
+import BackLink from "astro-vtbot/components/BackLink.astro";
 import readingTime from "reading-time";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LogLayout from "@/layouts/LogLayout.astro";
-import Button from "$lib/components/ui/button/button.svelte";
+import Button, {
+    buttonVariants,
+} from "$lib/components/ui/button/button.svelte";
 
 const logs = await getCollection("logs");
 if (!logs) {
@@ -71,23 +74,26 @@ const logBorderWidth = "1px";
 
 <BaseLayout>
     <div class="prose-container">
-        <Button asChild class="py-2" variant="ghost" href="/"
-            ><div class="inline-flex"><ChevronLeft />HOME</div></Button
+        <BackLink
+            href="/"
+            class=`back-anchor ${buttonVariants({ variant: "ghost" })} flex items-center justify-center`
         >
+            <ChevronLeft /><span class="flex items-center">Home</span>
+        </BackLink>
         <h1 class="py-4">Logs</h1>
         <div class="flex flex-col">
             <div class="border-b"></div>
             {
                 items.map(({ log, author, stats, PreviewContent }) => (
                     <div class="py-2 border-b">
-                        <div class="card-fade-out h-[11rem] rounded-lg link-button">
+                        <div class="card-fade-out h-[11rem] rounded-lg invisible-link link-button p-2">
                             <LogLayout log={log} author={author} stats={stats}>
                                 <PreviewContent />
                             </LogLayout>
 
                             <a
                                 href={`/logs/${log.data.slug}`}
-                                class="link-button absolute inset-0 z-10"
+                                class="absolute inset-0 z-10"
                                 aria-label={`Read ${log.data.title}`}
                             />
                         </div>

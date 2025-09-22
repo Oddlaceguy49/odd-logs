@@ -375,6 +375,11 @@
         @apply m-0 rounded-tl-none rounded-tr-none;
     }
 
+    /* Links */
+    .back-anchor {
+        text-decoration: none;
+    }
+
     /* Other */
     .card-fade-out {
         @apply mask-b-from-50% mask-b-to-100%;
@@ -382,12 +387,8 @@
     }
 
     .link-button {
-        @apply text-inherit no-underline;
         /* @apply hover:brightness-50; */
         @apply hover:bg-accent/50;
-    }
-
-    a[data-slot="button"] {
-        @apply no-underline;
+        text-decoration: none;
     }
 }
