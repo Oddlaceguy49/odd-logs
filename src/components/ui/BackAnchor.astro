@@ -1,0 +1,19 @@
+---
+import { ChevronLeft } from "@lucide/svelte";
+import BackLink from "astro-vtbot/components/BackLink.astro";
+import { buttonVariants } from "$lib/components/ui/button/";
+
+interface Props {
+    href?: string;
+}
+
+const { href, ...rest } = Astro.props;
+---
+
+<BackLink
+    class=`back-anchor ${buttonVariants({ variant: "ghost" })} flex items-center justify-center`
+    href={href}
+    {...rest}
+>
+    <ChevronLeft /><span class="flex items-center"><slot>Back</slot></span>
+</BackLink>
