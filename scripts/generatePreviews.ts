@@ -39,7 +39,7 @@ const mdxProcessor = unified()
     .use(remarkStringify);
 
 async function generatePreviews(): Promise<void> {
-    console.log("🚀 Generating previews with AST-based safe fallback...");
+    console.log("Generating previews with AST-based safe fallback...");
 
     await fs.rm(previewDir, { recursive: true, force: true });
     await fs.mkdir(previewDir, { recursive: true });
@@ -58,9 +58,7 @@ async function generatePreviews(): Promise<void> {
 
             if (!parts) {
                 console.log(
-                    `🟡 No valid frontmatter in: ${path.basename(
-                        file
-                    )}. Skipping.`
+                    `No valid frontmatter in: ${path.basename(file)}. Skipping.`
                 );
                 continue;
             }
@@ -76,7 +74,7 @@ async function generatePreviews(): Promise<void> {
                 previewBody = body.substring(0, separatorIndex).trim();
             } else {
                 console.log(
-                    `🟡 No tag found for ${baseFilename}. Generating safe automatic preview.`
+                    `No tag found for ${baseFilename}. Generating safe automatic preview.`
                 );
 
                 const tree = mdxProcessor.parse(body);
@@ -102,11 +100,11 @@ async function generatePreviews(): Promise<void> {
                 });
             }
         } catch (error) {
-            console.error(`❌ Failed to process file ${file}:`, error);
+            console.error(`Failed to process file ${file}:`, error);
         }
     }
 
-    console.log("🎉 Preview generation complete.");
+    console.log("Preview generation complete.");
 }
 
 generatePreviews().catch((err) => {
