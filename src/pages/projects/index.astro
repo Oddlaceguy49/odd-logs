@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import AstroSVG from "@/assets/astro.svg";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <div class="flex flex-col items-center p-8">
+        <h1>Projects</h1>
+        <div class="grid grid-cols-3 gap-4 w-full px-32 py-8">
+            {
+                Array.from({ length: 18 }).map((i) => (
+                    <div class="border-4 rounded-lg w-full h-full min-h-128">
+                        <Image
+                            src={AstroSVG}
+                            alt="Astro Logo"
+                            class="w-full h-full object-contain m-0"
+                        />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</BaseLayout>

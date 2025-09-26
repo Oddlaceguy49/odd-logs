@@ -55,8 +55,21 @@ const authors = defineCollection({
     }),
 });
 
+const projects = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/projects" }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        images: z.array(z.string()).optional(),
+        languages: z.array(z.string()).optional(),
+        blogTag: z.string().optional(),
+        link: z.string(),
+    }),
+});
+
 export const collections = {
     logs,
     logPreviews,
     authors,
+    projects,
 };
