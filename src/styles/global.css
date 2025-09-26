@@ -380,15 +380,23 @@
         text-decoration: none;
     }
 
-    /* Other */
-    .card-fade-out {
-        @apply mask-b-from-50% mask-b-to-100%;
-        /* @apply h-[70%] m-[-70%] shrink-0; */
+    a[data-slot="button"] {
+        text-decoration: none;
     }
 
     .link-button {
         /* @apply hover:brightness-50; */
         @apply hover:bg-accent/50;
         text-decoration: none;
+    }
+
+    /* Other */
+    .card-fade-out {
+        @apply mask-b-from-50% mask-b-to-100%;
+        /* @apply h-[70%] m-[-70%] shrink-0; */
+    }
+
+    .page-center {
+        @apply relative flex min-h-screen flex-col items-center justify-center p-4;
     }
 }
