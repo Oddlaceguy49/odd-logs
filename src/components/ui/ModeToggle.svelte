@@ -1,32 +1,31 @@
 <script lang="ts">
-    import { userPrefersMode, setMode, resetMode } from "mode-watcher";
-    import SunIcon from "@lucide/svelte/icons/sun";
-    import MoonIcon from "@lucide/svelte/icons/moon";
-    import LaptopMinimalIcon from "@lucide/svelte/icons/laptop-minimal";
-
-    import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+    import { resetMode, setMode, userPrefersMode } from "mode-watcher";
     import { buttonVariants } from "$lib/components/ui/button/index.js";
+    import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+    import LucideLaptopMinimal from "~icons/lucide/laptop-minimal";
+    import LucideMoon from "~icons/lucide/moon";
+    import LucideSun from "~icons/lucide/sun";
 </script>
 
 <DropdownMenu.Root>
     <DropdownMenu.Trigger
         class={buttonVariants({ variant: "outline", size: "icon" })}
     >
-        <SunIcon
+        <LucideSun
             class="h-[1.2rem] w-[1.2rem] !transition-all {userPrefersMode.current ===
             'light'
                 ? 'rotate-0 scale-100'
                 : 'rotate-90 scale-0'}"
         />
 
-        <MoonIcon
+        <LucideMoon
             class="absolute h-[1.2rem] w-[1.2rem] !transition-all {userPrefersMode.current ===
             'dark'
                 ? 'rotate-0 scale-100'
                 : '-rotate-90 scale-0'}"
         />
 
-        <LaptopMinimalIcon
+        <LucideLaptopMinimal
             class="absolute h-[1.2rem] w-[1.2rem] !transition-all {userPrefersMode.current ===
             'system'
                 ? 'rotate-0 scale-100'

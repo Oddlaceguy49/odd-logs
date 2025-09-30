@@ -13,7 +13,9 @@ import remarkToc from "remark-toc";
 
 import vtbot from "astro-vtbot";
 
-const siteUrl = "https://base-astro.copperdevs.com";
+import Icons from "unplugin-icons/vite";
+
+const siteUrl = "https://oddlace.dev";
 
 // https://astro.build/config
 export default defineConfig({
@@ -50,7 +52,10 @@ export default defineConfig({
             external: ["node:buffer"],
         },
 
-        plugins: [tailwindcss()],
+        plugins: [tailwindcss(), 
+            Icons({compiler: "svelte"}), 
+            Icons({compiler: "astro"})
+        ],
     },
     experimental: {
         contentIntellisense: true,

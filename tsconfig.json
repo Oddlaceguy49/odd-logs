@@ -1,7 +1,7 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
-        // Environment setup & latest features
+        // Environment setup and latest features
         "lib": [
             "ESNext"
         ],
@@ -40,7 +40,11 @@
             "@content/*": [
                 "src/content/*"
             ]
-        }
+        },
+        "types": [
+            "unplugin-icons/types/astro",
+            "unplugin-icons/types/svelte"
+        ]
     },
     "include": [
         ".astro/types.d.ts",

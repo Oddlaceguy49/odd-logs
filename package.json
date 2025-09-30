@@ -19,7 +19,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
     "@internationalized/date": "^3.8.1",
-    "@lucide/svelte": "^0.515.0",
     "@types/bun": "latest",
     "bits-ui": "^2.8.6",
     "clsx": "^2.1.1",
