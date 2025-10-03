@@ -60,10 +60,18 @@ const projects = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        images: z.array(z.string()).optional(),
+        images: z
+            .array(
+                z.object({
+                    image: z.string(),
+                    alt: z.string().optional(),
+                })
+            )
+            .optional(),
         languages: z.array(z.string()).optional(),
         blogTag: z.string().optional(),
-        link: z.string(),
+        projectLink: z.string().url(),
+        githubLink: z.string().url().optional(),
     }),
 });
 
