@@ -53,7 +53,6 @@ export default defineConfig({
         },
 
         plugins: [tailwindcss(), 
-            Icons({compiler: "svelte"}), 
             Icons({compiler: "astro"})
         ],
     },
