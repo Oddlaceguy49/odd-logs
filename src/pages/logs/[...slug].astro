@@ -1,16 +1,21 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
-import { ChevronLeft } from "@lucide/svelte";
 import readingTime from "reading-time";
 import BackAnchor from "@/components/ui/BackAnchor.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LogLayout from "@/layouts/LogLayout.astro";
-import Button from "$lib/components/ui/button/button.svelte";
+
+function generateSlug(title: string): string {
+    return title
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w\-]/g, "");
+}
 
 export async function getStaticPaths() {
     const logs = await getCollection("logs");
     return logs.map((entry) => ({
-        params: { slug: entry.data.slug },
+        params: { slug: entry.data.slug || generateSlug(entry.data.title) },
     }));
 }
 
