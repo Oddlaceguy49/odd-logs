@@ -1,5 +1,11 @@
-import { defineCollection, reference, z } from "astro:content";
+import {
+    defineCollection,
+    reference,
+    type SchemaContext,
+    z,
+} from "astro:content";
 import { glob } from "astro/loaders";
+import { languageIconTags } from "$lib/languageIcons";
 import { LOG_PATH, LOG_PREVIEW_PATH } from "./data/logs/logConfig";
 
 const logSchema = z.object({
@@ -55,24 +61,27 @@ const authors = defineCollection({
     }),
 });
 
-const projects = defineCollection({
-    loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/projects" }),
-    schema: z.object({
+export const projectsSchema = ({ image }: SchemaContext) =>
+    z.object({
         title: z.string(),
         description: z.string(),
         images: z
             .array(
                 z.object({
-                    image: z.string(),
+                    image: image(),
                     alt: z.string().optional(),
                 })
             )
             .optional(),
-        languages: z.array(z.string()).optional(),
+        languages: z.array(z.enum(languageIconTags)).optional(),
         blogTag: z.string().optional(),
         projectLink: z.string().url(),
         githubLink: z.string().url().optional(),
-    }),
+    });
+
+const projects = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.json", base: "./src/data/projects" }),
+    schema: projectsSchema,
 });
 
 export const collections = {
