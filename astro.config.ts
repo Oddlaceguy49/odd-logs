@@ -52,9 +52,7 @@ export default defineConfig({
             external: ["node:buffer"],
         },
 
-        plugins: [tailwindcss(), 
-            Icons({compiler: "astro"})
-        ],
+        plugins: [tailwindcss(), Icons({ compiler: "svelte" })],
     },
     experimental: {
         contentIntellisense: true,

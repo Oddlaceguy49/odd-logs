@@ -19,6 +19,7 @@
       },
       "devDependencies": {
         "@biomejs/biome": "^2.1.4",
+        "@iconify-json/devicon": "^1.2.45",
         "@iconify-json/lucide": "^1.2.68",
         "@internationalized/date": "^3.8.1",
         "@lucide/svelte": "^0.544.0",
@@ -180,6 +181,8 @@
     "@floating-ui/dom": ["@floating-ui/dom@1.7.3", "", { "dependencies": { "@floating-ui/core": "^1.7.3", "@floating-ui/utils": "^0.2.10" } }, "sha512-uZA413QEpNuhtb3/iIKoYMSK07keHPYeXF02Zhd6e213j+d1NamLix/mCLxBUDW/Gx52sPH2m+chlUsyaBs/Ag=="],
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.10", "", {}, "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ=="],
+
+    "@iconify-json/devicon": ["@iconify-json/devicon@1.2.45", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-EgowZDawRGJb72FlKKcOPwoMpdDkrqAVWNHhK7qSLI9sYAm7OkfLm/Vvjuqul1XCWA4KBylFv0szWPVpTkzVIg=="],
 
     "@iconify-json/lucide": ["@iconify-json/lucide@1.2.68", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-lR5xNJdn2CT0iR7lM25G4SewBO4G2hbr3fTWOc3AE9BspflEcneh02E3l9TBaCU/JOHozTJevWLrxBGypD7Tng=="],
 
