@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
-    "@iconify-json/devicon": "^1.2.45",
     "@iconify-json/lucide": "^1.2.68",
+    "@iconify-json/simple-icons": "^1.2.54",
     "@internationalized/date": "^3.8.1",
     "@lucide/svelte": "^0.544.0",
     "@types/bun": "latest",

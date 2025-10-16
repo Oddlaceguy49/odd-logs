@@ -1,7 +1,8 @@
-import DeviconAstro from "~icons/devicon/astro";
-import DeviconSvelte from "~icons/devicon/svelte";
-import DeviconTailwindcss from "~icons/devicon/tailwindcss";
-import DeviconTypescript from "~icons/devicon/typescript";
+import DeviconAstro from "~icons/simple-icons/astro";
+import DeviconSvelte from "~icons/simple-icons/svelte";
+import DeviconTailwindcss from "~icons/simple-icons/tailwindcss";
+import DeviconTypescript from "~icons/simple-icons/typescript";
+import DeviconGithub from "~icons/simple-icons/github";
 
 export const languageIcons = {
     svelte: {
@@ -19,6 +20,10 @@ export const languageIcons = {
     astro: {
         label: "Astro",
         icon: DeviconAstro,
+    },
+    github: {
+        label: "GitHub",
+        icon: DeviconGithub,
     },
 } as const;
 

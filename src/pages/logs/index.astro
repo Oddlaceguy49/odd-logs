@@ -6,20 +6,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import LogLayout from "@/layouts/LogLayout.astro";
 
 const logs = await getCollection("logs");
-if (!logs) {
-    throw new Error(`Logs not found`);
-}
+const logPreviews = await getCollection("logPreviews");
 
 console.log(`Found ${logs.length} logs.`);
 
-const previewCache = new Map();
-
-const logPreviews = await getCollection("logPreviews");
-if (!logPreviews) {
-    throw new Error(`LogPreviews not found`);
-}
-
 const previewBySlug = new Map(logPreviews.map((p) => [p.data.slug, p]));
+const authorCache = new Map();
 
 type Item = {
     log: (typeof logs)[number];
@@ -28,42 +20,37 @@ type Item = {
     PreviewContent: any;
 };
 
-const items: Item[] = (
-    await Promise.all(
-        logs.map(async (log) => {
-            if (!log.data.slug) return null;
-            const preview = previewBySlug.get(log.data.slug);
-            if (!preview) return null;
+const validLogs = logs.filter(
+    (log) => log.data.slug && previewBySlug.has(log.data.slug)
+);
 
-            let rendered = previewCache.get(preview.id);
-            if (!rendered) {
-                rendered = await render(preview);
-                previewCache.set(preview.id, rendered);
-            }
-            const { Content: PreviewContent } = rendered;
+const items: Item[] = (await Promise.all(
+    validLogs.map(async (log) => {
+        if (!log.data.slug) return null;
+        const preview = previewBySlug.get(log.data.slug)!;
 
-            const author = await getEntry(
+        const { Content: PreviewContent } = await render(preview);
+
+        // Cache authors to avoid duplicate fetches
+        const authorKey = `${log.data.author.collection}:${log.data.author.id}`;
+        let author = authorCache.get(authorKey);
+        if (!author) {
+            author = await getEntry(
                 log.data.author.collection,
                 log.data.author.id
             );
-            if (!author) return null;
+            if (author) {
+                authorCache.set(authorKey, author);
+            }
+        }
 
-            const stats = readingTime(log.body ?? "");
+        if (!author) return null;
 
-            return { log, author, stats, PreviewContent };
-        })
-    )
-).filter(Boolean) as Item[];
+        const stats = readingTime(log.body ?? "");
 
-// const { Content, headings } = await render(log);
-
-// const author = await getEntry(logData.author.collection, logData.author.id);
-// if (!author) {
-//     throw new Error(`Author not found for slug: ${logData.author.id}`);
-// }
-// const authorData = author.data;
-
-// const stats = readingTime(log.body ?? "");
+        return { log, author, stats, PreviewContent };
+    })
+).then((results) => results.filter(Boolean))) as Item[];
 
 const logBorderWidth = "1px";
 ---

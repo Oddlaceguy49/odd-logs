@@ -35,15 +35,38 @@ export function toSrc(img?: string | ImageMetadata) {
 }
 ---
 
-<div class="rounded-lg border-4">
-    <img
-        src={src}
-        alt={(images &&
-            images[0] &&
-            (images[0].alt || `A picture of ${title}`)) ||
-            "Placeholder Image"}
-    />
-    <h2>{title}</h2>
-    {description && <h3>{description}</h3>}
-    {languages && languages.map((language) => languageIcons[language])}
+<div {...rest}>
+    <div class="text-center h-full">
+        <div class="items-center justify-center h-3/4 border-b">
+            <img
+                src={src}
+                alt={(images &&
+                    images[0] &&
+                    (images[0].alt || `A picture of ${title}`)) ||
+                    "Placeholder Image"}
+                class="w-full h-full object-contain"
+            />
+        </div>
+        <h2>{title}</h2>
+        {description && <p class="text-muted-foreground">{description}</p>}
+        {
+            languages && (
+                <div class="flex gap-2 justify-center">
+                    {languages.map((language) => {
+                        const Icon = languageIcons[language].icon;
+                        return <Icon class="text-3xl" />;
+                    })}
+                    {githubLink &&
+                        (() => {
+                            const Icon = languageIcons.github.icon;
+                            return (
+                                <a href={githubLink} class="icon-link">
+                                    <Icon class="text-3xl" />
+                                </a>
+                            );
+                        })}
+                </div>
+            )
+        }
+    </div>
 </div>

@@ -78,27 +78,22 @@
     --sidebar-accent-foreground: oklch(0.3742 0.1844 263.942);
     --sidebar-border: oklch(0.9271 0.0075 260.7315);
     --sidebar-ring: oklch(0.6674 0.2225 35.0671);
-    --font-sans:
-        Atkinson Hyperlegible Next, ui-sans-serif, sans-serif, system-ui;
+    --font-sans: Atkinson Hyperlegible Next, ui-sans-serif, sans-serif,
+        system-ui;
     --font-serif: Source Serif 4, serif;
     --font-mono: JetBrains Mono, monospace;
     --radius: 0.75rem;
     --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.05);
     --shadow-xs: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.05);
-    --shadow-sm:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 1px 2px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 1px 2px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow-md:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-md: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 2px 4px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow-lg:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 4px 6px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow-xl:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 8px 10px -1px hsl(0 0% 10.1961% / 0.1);
     --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.25);
     --tracking-normal: 0em;
@@ -141,27 +136,22 @@
     --sidebar-accent-foreground: oklch(0.882 0.0588 253.9688);
     --sidebar-border: oklch(0.3776 0.043 268.4183);
     --sidebar-ring: oklch(0.6674 0.2225 35.0671);
-    --font-sans:
-        Atkinson Hyperlegible Next, ui-sans-serif, sans-serif, system-ui;
+    --font-sans: Atkinson Hyperlegible Next, ui-sans-serif, sans-serif,
+        system-ui;
     --font-serif: Source Serif 4, serif;
     --font-mono: JetBrains Mono, monospace;
     --radius: 0.75rem;
     --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.05);
     --shadow-xs: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.05);
-    --shadow-sm:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 1px 2px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 1px 2px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow-md:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-md: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 2px 4px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow-lg:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 4px 6px -1px hsl(0 0% 10.1961% / 0.1);
-    --shadow-xl:
-        0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
+    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.1),
         0px 8px 10px -1px hsl(0 0% 10.1961% / 0.1);
     --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 10.1961% / 0.25);
 
@@ -221,9 +211,8 @@
     --shadow-xl: var(--shadow-xl);
     --shadow-2xl: var(--shadow-2xl);
 
-    --font-atkinson-hyperlegible:
-        "Atkinson Hyperlegible", system-ui, -apple-system, BlinkMacSystemFont,
-        sans-serif;
+    --font-atkinson-hyperlegible: "Atkinson Hyperlegible", system-ui,
+        -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Base styling for prose content */
@@ -325,9 +314,9 @@
         @apply text-muted-foreground/70;
     }
 
-    img {
+    /* img {
         @apply max-w-full h-auto rounded-lg border my-8;
-    }
+    } */
 
     hr {
         @apply my-12 border-none h-px bg-gradient-to-r from-transparent via-border to-transparent;
@@ -398,5 +387,9 @@
 
     .page-center {
         @apply relative flex min-h-screen flex-col items-center justify-center p-4;
+    }
+
+    .icon-link {
+        @apply text-inherit;
     }
 }

@@ -1,0 +1,12 @@
+{
+    "title": "Sample Project",
+    "description": "This is a sample project",
+    "images": [
+        {
+            "image": "./tree.jpg",
+            "alt": "Sample Image"
+        }
+    ],
+    "projectLink": "https://example.com",
+    "githubLink": "https://github.com"
+}

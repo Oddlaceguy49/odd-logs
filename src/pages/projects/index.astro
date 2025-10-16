@@ -2,6 +2,12 @@
 import { Image } from "astro:assets";
 import AstroSVG from "@/assets/astro.svg";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import ProjectCard from "@/components/ui/ProjectCard.astro";
+
+const projects = await getCollection("projects");
+
+const projectDatas = projects.map((project) => project.data);
 ---
 
 <BaseLayout>
@@ -9,15 +15,36 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <h1>Projects</h1>
         <div class="grid grid-cols-3 gap-4 w-full px-32 py-8">
             {
-                Array.from({ length: 18 }).map((i) => (
-                    <div class="border-4 rounded-lg w-full h-full min-h-128">
-                        <Image
-                            src={AstroSVG}
-                            alt="Astro Logo"
-                            class="w-full h-full object-contain m-0"
+                projectDatas.map(
+                    ({
+                        title,
+                        description,
+                        projectLink,
+                        images,
+                        languages,
+                        blogTag,
+                        githubLink,
+                    }) => (
+                        // <div class="border-4 rounded-lg w-full h-full min-h-128">
+                        //     <Image
+                        //         src={AstroSVG}
+                        //         alt="Astro Logo"
+                        //         class="w-full h-full object-contain m-0"
+                        //     />
+                        // </div>
+
+                        <ProjectCard
+                            class="border-4 rounded-lg w-full h-128"
+                            title={title}
+                            description={description}
+                            projectLink={projectLink}
+                            images={images}
+                            languages={languages}
+                            blogTag={blogTag}
+                            githubLink={githubLink}
                         />
-                    </div>
-                ))
+                    )
+                )
             }
         </div>
     </div>
