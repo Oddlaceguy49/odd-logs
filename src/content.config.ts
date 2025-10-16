@@ -11,7 +11,7 @@ import { LOG_PATH, LOG_PREVIEW_PATH } from "./data/logs/logConfig";
 const logSchema = z.object({
     title: z.string(),
     slug: z.string().optional(),
-    pubDate: z.date(),
+    pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     description: z.string(),
     author: reference("authors"),
@@ -19,18 +19,10 @@ const logSchema = z.object({
     tags: z.array(z.string()),
     category: z.string().optional(),
     readingTime: z.number().optional(),
-    canonicalUrl: z.string().url().optional(),
-    image: z.object({
-        url: z.string(),
-        alt: z.string(),
-        width: z.number().optional(),
-        height: z.number().optional(),
-    }),
     lang: z.string().optional(),
-    ogType: z.string().optional(),
     featured: z.boolean().optional(),
     series: z.string().optional(),
-    summary: z.string().optional(),
+    // summary: z.string().optional(),
 });
 
 const logs = defineCollection({
@@ -65,6 +57,7 @@ export const projectsSchema = ({ image }: SchemaContext) =>
     z.object({
         title: z.string(),
         description: z.string(),
+        date: z.coerce.date(),
         images: z
             .array(
                 z.object({
