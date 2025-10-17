@@ -22,6 +22,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
     // second: "numeric",
     // hour12: false,
     // timeZoneName: "longOffset",
+    timeZone: "UTC",
 };
 ---
 
@@ -48,8 +49,8 @@ const dateOptions: Intl.DateTimeFormatOptions = {
                 <!-- <span aria-hidden="true">•</span> -->
 
                 {/* Publication Date */}
-                <time datetime={new Date(logData.pubDate).toISOString()}>
-                    {formatDate(logData.pubDate.toLocaleString(), dateOptions)}
+                <time datetime={logData.pubDate.toISOString()}>
+                    {formatDate(logData.pubDate.toUTCString(), dateOptions)}
                 </time>
 
                 {/* Separator */}
@@ -63,11 +64,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
                     logData.updatedDate && (
                         <>
                             {/* <span aria-hidden="true">•</span> */}
-                            <time
-                                datetime={new Date(
-                                    logData.updatedDate
-                                ).toISOString()}
-                            >
+                            <time datetime={logData.updatedDate.toISOString()}>
                                 Last Updated:{" "}
                                 {formatDate(
                                     logData.updatedDate.toDateString(),
