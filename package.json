@@ -51,7 +51,8 @@
     "astro": "astro",
     "bp": "bun run build && bun run preview",
     "g": "bun run ./scripts/generatePreviews.ts",
-    "gbp": "bun run g && bun run bp"
+    "gbp": "bun run g && bun run bp",
+    "deploy": "bun run g && bun run build && wrangler deploy"
   },
   "type": "module"
 }
