@@ -20,9 +20,15 @@ type Item = {
     PreviewContent: any;
 };
 
-const validLogs = logs.filter(
-    (log) => log.data.slug && previewBySlug.has(log.data.slug)
-);
+const validLogs = logs
+    .filter((log) => log.data.slug && previewBySlug.has(log.data.slug))
+    .sort((a, b) => {
+        const tA = new Date(a.data.pubDate).getTime();
+        const tB = new Date(b.data.pubDate).getTime();
+
+        if (tA !== tB) return tB - tA;
+        return a.data.title.localeCompare(b.data.title);
+    });
 
 const items: Item[] = (await Promise.all(
     validLogs.map(async (log) => {
