@@ -70,6 +70,7 @@ export const projectsSchema = ({ image }: SchemaContext) =>
         blogTag: z.string().optional(),
         projectLink: z.string().url(),
         githubLink: z.string().url().optional(),
+        featured: z.boolean().optional(),
     });
 
 const projects = defineCollection({

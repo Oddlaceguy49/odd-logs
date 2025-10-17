@@ -392,4 +392,55 @@
     .icon-link {
         @apply text-inherit;
     }
+
+    .project-card {
+        @apply border-4 rounded-lg w-full overflow-hidden bg-card;
+    }
+
+    .language-icon {
+        @apply text-3xl;
+        @apply text-muted-foreground;
+    }
+}
+
+@layer utilities {
+    .mondecolor-shadow {
+        --tw-shadow: 5px 5px
+                color-mix(in oklab, var(--tw-shadow-color) 70%, transparent),
+            10px 10px
+                color-mix(in oklab, var(--tw-shadow-color) 50%, transparent),
+            15px 15px
+                color-mix(in oklab, var(--tw-shadow-color) 30%, transparent),
+            20px 20px
+                color-mix(in oklab, var(--tw-shadow-color) 15%, transparent),
+            25px 25px
+                color-mix(in oklab, var(--tw-shadow-color) 7%, transparent);
+        box-shadow: var(--tw-shadow);
+    }
+
+    .crescendo-shadow {
+        --tw-shadow: -10px -10px 30px 4px color-mix(in oklab, var(
+                            --tw-shadow-color
+                        )
+                        10%, transparent),
+            10px 10px 30px 4px
+                color-mix(in oklab, var(--tw-shadow-color) 15%, transparent);
+        box-shadow: var(--tw-shadow);
+    }
+
+    .crescendo-text-shadow {
+        --tw-shadow: -10px -10px 30px 4px color-mix(in oklab, var(
+                            --tw-shadow-color
+                        )
+                        10%, transparent),
+            10px 10px 30px 4px
+                color-mix(in oklab, var(--tw-shadow-color) 15%, transparent);
+        text-shadow: var(--tw-shadow);
+    }
+
+    .vigorous-shadow {
+        --tw-shadow: 0 20px 50px
+            color-mix(in oklab, var(--tw-shadow-color) 70%, transparent);
+        box-shadow: var(--tw-shadow);
+    }
 }

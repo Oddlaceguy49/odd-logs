@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro"; // type for imported/optimized images
 import AstroSVG from "@/assets/astro.svg";
 import { type LanguageIconTag, languageIcons } from "$lib/languageIcons";
+import IconLink from "./IconLink.astro";
 
 export interface Props {
     title: string;
@@ -36,33 +37,39 @@ export function toSrc(img?: string | ImageMetadata) {
 ---
 
 <div {...rest}>
-    <div class="text-center h-full">
-        <div class="items-center justify-center h-3/4 border-b">
+    <div class="flex flex-col text-center h-full overflow-hidden">
+        <div class="relative items-center justify-center h-64 border-b-2">
             <img
                 src={src}
                 alt={(images &&
                     images[0] &&
                     (images[0].alt || `A picture of ${title}`)) ||
                     "Placeholder Image"}
-                class="w-full h-full object-contain"
+                class="w-full h-full object-cover"
             />
+            <h4 class="p-2 absolute bg-card/80 rounded-br-md top-0 left-0">
+                {title}
+            </h4>
         </div>
-        <h2>{title}</h2>
+
         {description && <p class="text-muted-foreground">{description}</p>}
         {
             languages && (
-                <div class="flex gap-2 justify-center">
+                <div class="flex gap-2 justify-center mt-auto p-2">
                     {languages.map((language) => {
                         const Icon = languageIcons[language].icon;
-                        return <Icon class="text-3xl" />;
+                        return <Icon class="language-icon" />;
                     })}
                     {githubLink &&
                         (() => {
                             const Icon = languageIcons.github.icon;
                             return (
-                                <a href={githubLink} class="icon-link">
-                                    <Icon class="text-3xl" />
-                                </a>
+                                <IconLink
+                                    href={githubLink}
+                                    label="View on Github"
+                                    icon={Icon}
+                                    class="language-icon hover:text-foreground"
+                                />
                             );
                         })}
                 </div>

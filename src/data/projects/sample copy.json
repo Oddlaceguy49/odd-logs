@@ -9,5 +9,6 @@
         }
     ],
     "projectLink": "https://example.com",
-    "githubLink": "https://github.com"
+    "githubLink": "https://github.com",
+    "featured": true
 }

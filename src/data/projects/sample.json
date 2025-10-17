@@ -12,5 +12,6 @@
     "githubLink": "https://github.com",
     "languages": [
         "astro"
-    ]
+    ],
+    "featured": true
 }

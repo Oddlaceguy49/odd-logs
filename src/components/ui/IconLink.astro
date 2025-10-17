@@ -1,0 +1,19 @@
+---
+export interface Props {
+    href: string | URL;
+    label: string;
+    icon: any;
+    [key: string]: unknown;
+}
+const { href, label, icon: Icon, ...rest } = Astro.props;
+---
+
+<a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={label}
+    class="icon-link inline-flex items-center justify-center"
+>
+    <Icon class="text-3xl" {...rest} />
+</a>

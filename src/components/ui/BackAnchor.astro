@@ -2,19 +2,23 @@
 import BackLink from "astro-vtbot/components/BackLink.astro";
 import { buttonVariants } from "$lib/components/ui/button/";
 import LucideChevronLeft from "~icons/lucide/chevron-left";
+import { twMerge } from "tailwind-merge"; // 1. Import the utility
 
 interface Props {
     href?: string;
+    class?: string;
+    [key: string]: unknown;
 }
 
-const { href, ...rest } = Astro.props;
+const { href, class: extraClass, ...rest } = Astro.props;
+
+const finalClasses = twMerge(
+    `back-anchor ${buttonVariants({ variant: "ghost" })} inline-flex items-center gap-x-1.5 whitespace-nowrap`,
+    extraClass
+);
 ---
 
-<BackLink
-    class=`back-anchor ${buttonVariants({ variant: "ghost" })} flex items-center justify-center`
-    href={href}
-    {...rest}
->
-    <LucideChevronLeft /><span class="flex items-center"><slot>Back</slot></span
-    >
+<BackLink class={finalClasses} href={href} {...rest}>
+    <LucideChevronLeft />
+    <span><slot>Back</slot></span>
 </BackLink>
