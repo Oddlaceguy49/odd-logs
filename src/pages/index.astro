@@ -2,6 +2,8 @@
 import ModeToggle from "@/components/ui/ModeToggle.svelte";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Button from "$lib/components/ui/button/button.svelte";
+import IconLink from "@/components/ui/IconLink.astro";
+import { languageIcons } from "@/lib/languageIcons";
 ---
 
 <BaseLayout>
@@ -11,16 +13,36 @@ import Button from "$lib/components/ui/button/button.svelte";
         <div class="absolute top-4 right-4">
             <ModeToggle client:visible />
         </div>
-        <div class="text-center">
-            <h1>Welcome to 0dd Logs</h1>
-            <h2>Astro + Tailwind</h2>
-            <h3>Svelte + Shadcn-svelte</h3>
-            <h4>Typescript</h4>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
-                repellendus. Dignissimos quidem aliquam adipisci. Soluta,
-                aperiam. Soluta, aperiam. Soluta, aperiam. Soluta, aperiam. 0.
-            </p>
+        <div class="flex flex-col items-center text-center">
+            <h1 class="py-4">
+                Welcome to
+                <span aria-hidden="true">0dd</span>
+                <span class="sr-only">Odd</span>
+                Logs
+            </h1>
+            <div>
+                <IconLink
+                    href="https://github.com/oddlaceguy49/"
+                    icon={languageIcons.github.icon}
+                    label="My Github page"
+                    class="language-icon hover:text-foreground"
+                />
+            </div>
+            <div class="flex flex-col w-96 text-left">
+                <p>
+                    Hi, I'm Oddlace, a tech, engineering, and music enthusiast.<br
+                    />
+                    Come check out my projects, or read some of the logs I make from
+                    time to time.
+                </p>
+                <p>
+                    This is my little corner of the internet... <span
+                        class="text-primary text-shadow-[0_0_10px_color-mix(in_oklab,var(--tw-text-shadow-color)_100%,transparent)] text-shadow-primary"
+                        >for now!</span
+                    >
+                </p>
+                <p></p>
+            </div>
             <span>
                 <Button variant="outline" href="/projects">Projects</Button>
                 <Button variant="outline" href="/logs">Odd Logs</Button>

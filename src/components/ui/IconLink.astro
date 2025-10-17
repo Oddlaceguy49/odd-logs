@@ -1,11 +1,30 @@
 ---
+import { twMerge } from "tailwind-merge";
+
 export interface Props {
     href: string | URL;
     label: string;
     icon: any;
-    [key: string]: unknown;
+    class?: string;
+    iconClass?: string;
+    [key: string]: any;
 }
-const { href, label, icon: Icon, ...rest } = Astro.props;
+
+const {
+    href,
+    label,
+    icon: Icon,
+    class: className,
+    iconClass,
+    ...rest
+} = Astro.props as Props;
+
+const anchorClasses = twMerge(
+    "inline-flex items-center justify-center hover:text-foreground text-muted-foreground",
+    className
+);
+
+const iconClasses = twMerge("text-3xl", iconClass);
 ---
 
 <a
@@ -13,7 +32,7 @@ const { href, label, icon: Icon, ...rest } = Astro.props;
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    class="icon-link inline-flex items-center justify-center"
+    class={anchorClasses}
 >
-    <Icon class="text-3xl" {...rest} />
+    <Icon class={iconClasses} {...rest} />
 </a>

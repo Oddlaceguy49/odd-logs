@@ -338,6 +338,22 @@
     td {
         @apply border-t p-3 text-sm text-muted-foreground;
     }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+
+        /* prevent copy/paste duplication */
+        user-select: none;
+        -webkit-user-select: none;
+    }
 }
 
 /* Component styling */
@@ -389,10 +405,6 @@
         @apply relative flex min-h-screen flex-col items-center justify-center p-4;
     }
 
-    .icon-link {
-        @apply text-inherit;
-    }
-
     .project-card {
         @apply border-4 rounded-lg w-full overflow-hidden bg-card;
     }
@@ -426,16 +438,6 @@
             10px 10px 30px 4px
                 color-mix(in oklab, var(--tw-shadow-color) 15%, transparent);
         box-shadow: var(--tw-shadow);
-    }
-
-    .crescendo-text-shadow {
-        --tw-shadow: -10px -10px 30px 4px color-mix(in oklab, var(
-                            --tw-shadow-color
-                        )
-                        10%, transparent),
-            10px 10px 30px 4px
-                color-mix(in oklab, var(--tw-shadow-color) 15%, transparent);
-        text-shadow: var(--tw-shadow);
     }
 
     .vigorous-shadow {
