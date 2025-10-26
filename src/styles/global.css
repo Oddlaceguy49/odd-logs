@@ -363,6 +363,10 @@
         @apply w-full max-w-[65ch] lg:max-w-[80ch] mx-auto px-4 py-8;
     }
 
+    .prose-container :where(h1, h2, h3, h4, h5, h6) {
+        @apply py-3;
+    }
+
     .section-heading {
         @apply border-b pb-3;
     }
